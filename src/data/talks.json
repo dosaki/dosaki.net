@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Using Puppet to Setup and Maintain Your Environments",
+        "description": "Short talk about Puppet.",
+        "type": "talk",
+        "date": 2013,
+        "tags": ["puppet", "infrastructure"]
+    },
+    {
+        "name": "Problem Solving Methodologies",
+        "description": "Workshop on problem solving techniques based on <a href='https://www.goodreads.com/book/show/2728307-how-to-solve-it'>How to Solve It</a>.",
+        "type": "workshop",
+        "date": 2013,
+        "tags": []
+    },
+    {
+        "name": "Introduction to Docker",
+        "link": "https://dosaki.net/documents/DockerTraining-Part1.pdf",
+        "description": "Workshop to introduce students to Docker. Delivered to the <a href='https://www.estgp.pt/pt/'>ESTGP</a>'s Computer Software Engineering course.",
+        "type": "workshop",
+        "date": 2020,
+        "tags": []
+    },
+    {
+        "name": "Pencil, Paper and a Knife",
+        "link": "https://blog.dosaki.net/",
+        "description": "Attempts at designing board games.",
+        "type": "blog",
+        "date": 99999,
+        "status": "on-hold",
+        "roles": [],
+        "tags": ["board games"]
+    }
+]

@@ -1,0 +1,66 @@
+.About .body {
+    display: flex;
+}
+
+.About .text {
+    flex-grow: 1;
+}
+
+.About .text > div {
+    margin: 6px 0;
+}
+
+.About .trace-under, .About .trace-around {
+    border-style: solid;
+    border-color: #b6d094;
+}
+
+.About .no-border {
+    border-width: 0;
+}
+
+.About .trace-under {
+    border-bottom-width: 2px;
+}
+
+.About .trace-right {
+    border-right-width: 2px;
+    padding-top:12px;
+}
+.About .trace-around {
+    padding: 2px;
+    border-width: 2px;
+    border-radius: 6px;
+}
+
+.About .aside {
+    font-size: 0.5;
+    margin-right: 32px;
+}
+
+.About .me {
+    width: 256px;
+    height: 256px;
+    border-radius: 6px;
+}
+
+.About .chart {
+    width: 630px;
+    height: 350px;
+}
+
+.About div.no-top-margin {
+    margin-top: 0;
+}
+
+.About div.no-bottom-margin {
+    margin-bottom: 0;
+}
+
+.About .half {
+    width: 50%;
+}
+
+.About .spacer {
+    height: 12px;
+}

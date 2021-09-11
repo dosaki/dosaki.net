@@ -1,0 +1,107 @@
+.Project {
+    width: 240px;
+    height: 350px;
+    background-color: #2e2836;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #e1aa7d;
+    margin-top: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.Project.inactive {
+    background-color: #2e2836;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23454247' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.Project .holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.Project.inactive .holder {
+    opacity: 0.6;
+}
+
+.Project .name {
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    font-size: 1em;
+    margin:6px 0;
+}
+
+.Project .description {
+    font-size: 0.7em;
+}
+
+.Project .image-container {
+    text-align: center;
+}
+
+.Project img {
+    max-width: 240px;
+    max-height: 150px;
+    min-height: 150px;
+    border-radius: 6px;
+}
+
+.Project.inactive img {
+    filter:saturate(0);
+    z-index: 0;
+}
+
+.Project .tags {
+    display: flex;
+}
+
+.Project .tags > a {
+    margin-left: 6px;
+    font-size: 0.6em;
+}
+.Project .tags > a:first-child {
+    margin-left: 0;
+}
+
+.Project .ribbon-holder {
+    z-index: 1;
+    display: flex;
+    margin-bottom: -47px;
+    margin-right: -62px;
+    margin-top: 5px;
+    justify-content: right;   
+    flex-shrink: 0; 
+}
+
+.Project .ribbon {
+    z-index: 1;
+    position: relative;
+    margin: 0;
+    width: 200px;
+    height: 50px;
+    flex-shrink: 0;
+    transform: rotate(45deg);
+    text-align: center;
+    text-transform: lowercase;
+    justify-content: center;
+    background: #e1aa7d;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e1aa7d;
+}
+
+.Project .ribbon:hover {
+    background: #fff2e7;
+}
+
+.Project .ribbon a {
+    color: #fff2e7;
+}
+
+.Project .ribbon:hover a {
+    color: #e1aa7d;
+}
