@@ -7,6 +7,10 @@
     font-size: 16px;
 }
 
+.App .logo {
+    align-self: center;
+}
+
 .App a {
     color: #e1aa7d;
     text-decoration: none;
