@@ -4,7 +4,10 @@
     justify-content: center;
     height: 100%;
     font-size: 4em;
+    margin: -16px;
+    padding: 16px;
 }
+
 .splash {
     display: flex;
     flex-direction: column;
@@ -17,4 +20,10 @@
 
 .smaller {
     font-size: 0.3em;
+}
+
+@media screen and (max-width: 615px) {
+    .splash {
+        font-size: 0.7em;
+    }
 }

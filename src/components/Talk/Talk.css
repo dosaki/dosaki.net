@@ -30,20 +30,20 @@
     margin-bottom: 12px;
 }
 
-
 .Talk .description {
     font-size: 0.7em;
 }
+
 .Talk .tags {
     display: flex;
 }
 
-.Talk .tags>a {
+.Talk .tags>div {
     margin-left: 6px;
     font-size: 0.6em;
 }
 
-.Talk .tags>a:first-child {
+.Talk .tags>div:first-child {
     margin-left: 0;
 }
 

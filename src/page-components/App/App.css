@@ -4,7 +4,7 @@
     width: 100%;
     height: 100%;
     color: #fffdfb;
-    font-size: 1.5em;
+    font-size: 16px;
 }
 
 .App a {
@@ -18,7 +18,7 @@
 }
 
 .highlight {
-    color: #b6d094;
+    color: #b5777e;
 }
 
 .flex {
@@ -33,45 +33,82 @@
     justify-content: space-between;
 }
 
-.App > .header {
+.App>.header {
     display: flex;
     flex-direction: column;
     background: #2e2836;
     flex-shrink: 0;
 }
 
-.App > .header ul {
+.App>.header ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.App > .header ul>li>a {
+.App>.header ul>li>a {
     display: block;
     padding: 8px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
 }
 
-.App > .header ul>li>a.selected {
+.App>.header ul>li>a.selected {
     padding: 8px;
     background: #454247;
 }
 
-
-.App > .header ul>li>a:hover {
+.App>.header ul>li>a:hover {
     padding: 8px;
     background: #535055;
     background: linear-gradient(90deg, #535055 0%, #454247 100%);
 }
 
-.App > .content {
+.App>.content {
     background: #454247;
     flex-grow: 1;
     padding: 16px;
 }
 
-
 img.pixelated {
     image-rendering: pixelated
+}
+
+.App .link-button {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
+    color: #e1aa7d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.App .link-button:hover {
+    color: #e28941;
+}
+
+@media screen and (max-width: 615px) {
+    .App {
+        flex-direction: column;
+        font-size: 14px;
+    }
+    .App .header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .App>.header ul {
+        display: flex;
+    }
+    .App>.header ul>li>a {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        border-bottom-left-radius: 0;
+    }
+    .App>.header ul>li>a:hover {
+        background: linear-gradient(180deg, #535055 0%, #454247 100%);
+    }
 }

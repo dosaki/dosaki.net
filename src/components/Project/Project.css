@@ -59,11 +59,11 @@
     display: flex;
 }
 
-.Project .tags > a {
+.Project .tags > div {
     margin-left: 6px;
     font-size: 0.6em;
 }
-.Project .tags > a:first-child {
+.Project .tags > div:first-child {
     margin-left: 0;
 }
 

@@ -23,7 +23,7 @@ class Talk extends React.Component {
           </div>
           <div className='footer'>
             <div className='tags'>
-              {[this.detail.type, ...this.detail.tags].map(t => <a key={uuid()}>#{t}</a>)}
+              {[this.detail.type, ...this.detail.tags].map(t => <div key={uuid()}>#{t}</div>)}
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import './Home.css';
 class Home extends React.Component {
   render() {
     return (
-      <div className="splash-holder">
+      <div className="splash-holder" style={{ background: "url('/images/t_snow.jpg') no-repeat left center fixed", backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
         <div className="splash">
           <div>
             Hi! I'm Tiago and I make things!

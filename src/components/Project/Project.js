@@ -19,14 +19,14 @@ class Project extends React.Component {
         <div className='holder'>
           <div className='content'>
             <div className='image-container'>
-              <img className={this.detail.pixelatedImage ? 'pixelated' : ''} src={this.detail.icon} />
+              <img alt={`${this.detail.name} icon`} className={this.detail.pixelatedImage ? 'pixelated' : ''} src={this.detail.icon} />
             </div>
             <h2 className='name'>{this.detail.link ? <a href={this.detail.link}>{this.detail.name}</a> : this.detail.name}{this.isInactive ? <small><br />{this.detail.status}</small> : ''}</h2>
             <div className='description' dangerouslySetInnerHTML={{ __html: this.detail.description }}></div>
           </div>
           <div className='footer'>
             <div className='tags'>
-              {[this.detail.type, ...this.detail.tags].map(t => <a key={uuid()}>#{t}</a>)}
+              {[this.detail.type, ...this.detail.tags].map(t => <div key={uuid()}>#{t}</div>)}
             </div>
           </div>
         </div>
