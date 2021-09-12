@@ -14,6 +14,7 @@ import {
 import {
   CanvasRenderer
 } from 'echarts/renderers';
+import store from '../../data/store';
 
 echarts.use(
   [TooltipComponent, LegendComponent, PieChart, CanvasRenderer, TitleComponent]
@@ -27,8 +28,6 @@ const calculateChartValue = {
     return (v.years.endYear - v.years.startYear) || 1;
   }
 };
-
-let reposWithLanguagesCache = null;
 
 class LanguageGraph extends React.Component {
   constructor(props) {
@@ -159,7 +158,8 @@ class LanguageGraph extends React.Component {
   }
 
   async componentDidMount() {
-    if (!reposWithLanguagesCache) {
+    let cachedRepos = store.get('repositoriesCache');
+    if (!cachedRepos) {
       const response = await fetch("https://api.github.com/users/dosaki/repos");
       if (response.ok) {
         const repos = await response.json();
@@ -174,10 +174,11 @@ class LanguageGraph extends React.Component {
           }
           return null;
         }));
-        reposWithLanguagesCache = reposWithLanguages;
+        cachedRepos = reposWithLanguages;
+        store.put('repositoriesCache', reposWithLanguages, 2);
       }
     }
-    reposWithLanguagesCache.filter(e => e).forEach(repo => {
+    cachedRepos.filter(e => e).forEach(repo => {
       if(repo._languages){
         repo._languages.forEach(language => {
           const lang = language.toLowerCase() === 'vue' ? 'javascript' : language.toLowerCase();
