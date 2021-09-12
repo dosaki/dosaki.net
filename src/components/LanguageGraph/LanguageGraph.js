@@ -28,6 +28,8 @@ const calculateChartValue = {
   }
 };
 
+let reposWithLanguagesCache = null;
+
 class LanguageGraph extends React.Component {
   constructor(props) {
     super(props);
@@ -106,6 +108,7 @@ class LanguageGraph extends React.Component {
       },
     };
   }
+
   get chartOptions() {
     return {
       title: {
@@ -148,34 +151,45 @@ class LanguageGraph extends React.Component {
               name: e[0],
               value: calculateChartValue[this.context.showProjectsBy](e[1])
             };
-          })
+          }),
+          color: ['#f7e018', '#4298b8', '#ea2d2e', '#36008e', '#00acd7', '#00007c', '#5c41e2', '#888888', '#f7c93e', '#293036']
         }
       ]
     };
   }
 
   async componentDidMount() {
-    const response = await fetch("https://api.github.com/users/dosaki/repos");
-    if (response.ok) {
-      const repos = await response.json();
-      repos.forEach(async repo => {
-        if (!repo.fork) {
-          const languageResponse = await fetch(repo["languages_url"]);
-          if (languageResponse.ok) {
-            const languages = await languageResponse.json();
-            Object.keys(languages).forEach(language => {
-              const lang = language.toLowerCase() === 'vue' ? 'javascript' : language.toLowerCase();
-              if (lang in this.projects) {
-                this.projects[lang].projects.push(repo.name);
-                this.projects[lang].years.startYear = Math.min(new Date(repo["created_at"]).getFullYear(), this.projects[lang].years.startYear || 9999);
-                this.projects[lang].years.endYear = Math.max(new Date(repo["created_at"]).getFullYear(), this.projects[lang].years.endYear || 0);
-                this.context.setProjects(this.projects);
-              }
-            });
+    if (!reposWithLanguagesCache) {
+      const response = await fetch("https://api.github.com/users/dosaki/repos");
+      if (response.ok) {
+        const repos = await response.json();
+        const reposWithLanguages = await Promise.all(repos.map(async repo => {
+          if (!repo.fork) {
+            const languageResponse = await fetch(repo["languages_url"]);
+            if (languageResponse.ok) {
+              const languages = await languageResponse.json();
+              repo._languages = Object.keys(languages);
+              return repo;
+            }
           }
-        }
-      });
+          return null;
+        }));
+        reposWithLanguagesCache = reposWithLanguages;
+      }
     }
+    reposWithLanguagesCache.filter(e => e).forEach(repo => {
+      if(repo._languages){
+        repo._languages.forEach(language => {
+          const lang = language.toLowerCase() === 'vue' ? 'javascript' : language.toLowerCase();
+          if (lang in this.projects) {
+            this.projects[lang].projects.push(repo.name);
+            this.projects[lang].years.startYear = Math.min(new Date(repo["created_at"]).getFullYear(), this.projects[lang].years.startYear || 9999);
+            this.projects[lang].years.endYear = Math.max(new Date(repo["created_at"]).getFullYear(), this.projects[lang].years.endYear || 0);
+            this.context.setProjects(this.projects);
+          }
+        });
+      }
+    });
   }
 
   render() {

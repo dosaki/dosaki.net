@@ -53,9 +53,11 @@ class About extends React.Component {
             <LanguageContext.Provider value={this.state}>
               <LanguageGraph />
             </LanguageContext.Provider>
+            
             <div className="flex no-top-margin">
               <div className="no-border trace-under trace-right half">
-                I find myself making things with {this.state.showProjectsBy === 'projects' ? 'various programming languages' : <button className='link-button' onClick={() => this.toggleShowProjectsBy()}>various programming languages</button>}. Some of which, I've worked for {this.state.showProjectsBy === 'projects' ? <button className='link-button' onClick={() => this.toggleShowProjectsBy()}>a few years</button> : 'a few years'}.
+                I find myself making things with {this.state.showProjectsBy === 'projects' ? 'various programming languages' : <button className='link-button' onClick={() => this.toggleShowProjectsBy()}>various programming languages</button>}.
+                Some of which, I've worked with for {this.state.showProjectsBy === 'projects' ? <button className='link-button' onClick={() => this.toggleShowProjectsBy()}>a few years</button> : 'a few years'}.
               </div>
             </div>
           </div>
