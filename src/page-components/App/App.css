@@ -72,6 +72,7 @@
     background: #454247;
     flex-grow: 1;
     padding: 16px;
+    overflow-y: auto;
 }
 
 img.pixelated {
@@ -111,8 +112,12 @@ img.pixelated {
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         border-bottom-left-radius: 0;
+        height:100%
     }
     .App>.header ul>li>a:hover {
         background: linear-gradient(180deg, #535055 0%, #454247 100%);
+    }
+    .App .logo>img {
+        height: 30px;
     }
 }

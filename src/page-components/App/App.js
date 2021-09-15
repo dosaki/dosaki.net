@@ -30,7 +30,7 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <div className="header">
-            <Link to="/" onClick={() => this.setState({ selectedTab: null })}><img className='logo' alt='Logo' src='/images/logo.png' /></Link>
+            <Link className='logo' to="/" onClick={() => this.setState({ selectedTab: null })}><img alt='Logo' src='/images/logo.png' /></Link>
             <ul className="nav">
               <li>
                 <Link to="/about" onClick={() => this.setState({ selectedTab: "about" })} className={this.checkSelection("about")}>About me</Link>
