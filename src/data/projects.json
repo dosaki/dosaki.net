@@ -76,5 +76,16 @@
         "source": "https://github.com/Panintelligence/henchman",
         "roles": ["maintainer"],
         "tags": ["discord"]
+    },
+    {
+        "icon": "https://rawcdn.githack.com/dosaki/glizi/bcbe3eca05bdbb2a233b6e367c7e56190a1863b9/static/assets/logo.png",
+        "name": "Glizi",
+        "link": null,
+        "description": "A Zendesk App to integrate your <a href='https://www.zendesk.com/'>Zendesk Servicedesk</a> with <a href='https://gitlab.com/'>Gitlab Issues</a>, especially a self-managed one.",
+        "type": "tool",
+        "status": "active",
+        "source": "https://github.com/dosaki/glizi",
+        "roles": ["maintainer"],
+        "tags": ["gitlab", "zendesk"]
     }
 ]

@@ -1,13 +1,14 @@
 import React from 'react';
 import './Talk.css';
 import { v4 as uuid } from 'uuid';
-import { faChalkboardTeacher, faComment, faPenFancy } from '@fortawesome/free-solid-svg-icons';
+import { faChalkboardTeacher, faComment, faPenFancy, faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const icons = {
   "talk": faComment,
   "blog": faPenFancy,
-  "workshop": faChalkboardTeacher
+  "workshop": faChalkboardTeacher,
+  "podcast": faMicrophoneAlt
 };
 
 class Talk extends React.Component {

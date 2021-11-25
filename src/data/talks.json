@@ -26,9 +26,19 @@
         "link": "https://blog.dosaki.net/",
         "description": "Attempts at designing board games.",
         "type": "blog",
-        "date": 99999,
+        "date": 99998,
         "status": "on-hold",
         "roles": [],
         "tags": ["board games"]
+    },
+    {
+        "name": "Detouring Show - Career detour stories",
+        "link": "https://detouring.show/",
+        "description": "A series of interviews in Podcast format with people who changed their careers, vocations and professional fields. New episodes every other week!",
+        "type": "podcast",
+        "date": 99999,
+        "status": "on-going",
+        "roles": [],
+        "tags": ["careers"]
     }
 ]
