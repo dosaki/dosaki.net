@@ -22,11 +22,19 @@
         "tags": []
     },
     {
+        "name": "Introduction to Containers and Orchestrators",
+        "link": "https://dosaki.net/documents/IntroductionToContainersAndOrchestrators.pdf",
+        "description": "Workshop to introduce students to Containers and Orchestrators. Delivered to the <a href='https://www.estgp.pt/pt/'>ESTGP</a>'s Computer Software Engineering course.",
+        "type": "talk",
+        "date": 2022,
+        "tags": []
+    },
+    {
         "name": "Pencil, Paper and a Knife",
         "link": "https://blog.dosaki.net/",
         "description": "Attempts at designing board games.",
         "type": "blog",
-        "date": 99998,
+        "date": -1,
         "status": "on-hold",
         "roles": [],
         "tags": ["board games"]
