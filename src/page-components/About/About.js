@@ -43,7 +43,8 @@ class About extends React.Component {
         <div className="body">
           <div className="text">
             <div>I'm a software developer from Portugal. Currently living in the UK.</div>
-            <div>I work as a senior/lead dev at <a href="https://www.panintelligence.com/">Panintelligence</a>, where I get to play with data and mentor our juniors.</div>
+            <div>I work <a href="https://keyholding.com/">The Keyholding Company</a> as the Lead Backend Developer.</div>
+            <div>Before, I worked as the Software Development Manager at <a href="https://www.panintelligence.com/">Panintelligence</a>, where I got to play with data and mentor our devs.</div>
             <div>Online, I use '<span className="highlight">Dosaki</span>' as my monicker.</div>
             <div className="spacer"></div>
             <div className="no-border trace-under flex space-between">Building things is my passion and I've been doing it for quite some time. <div className="aside">(yes that's me)</div></div>
