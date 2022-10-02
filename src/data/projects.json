@@ -56,6 +56,17 @@
         "tags": ["generator"]
     },
     {
+        "icon": "https://hell-inc.dosaki.net/small-icon.png",
+        "name": "Hell Inc.",
+        "link": "https://hell-inc.dosaki.net/",
+        "description": "A 13Kb management game made for the <a href='http://2022.js13kgames.com/'>2022 js13k</a> with the theme \"Death\". In Hell Inc. you play as a demon managing a hell pit. Welcome sinful souls, build the right torture devices, extract their misery, pay your demon torturers, keep the hellish afterlife moving!",
+        "type": "game",
+        "status": "done",
+        "source": "https://github.com/dosaki/hell-inc",
+        "roles": [],
+        "tags": []
+    },
+    {
         "icon": "https://rawcdn.githack.com/Panintelligence/picons/b296883acfe6ec50dbbb3fa5b04893e25ee48eb0/changes/images/picons-logo.svg",
         "name": "PIcons",
         "link": "https://panintelligence.github.io/picons.html",
