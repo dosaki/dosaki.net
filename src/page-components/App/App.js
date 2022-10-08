@@ -41,6 +41,9 @@ class App extends React.Component {
               <li>
                 <Link to="/talks" onClick={() => this.setState({ selectedTab: "talks" })} className={this.checkSelection("talks")}>Stuff I talk about</Link>
               </li>
+              <li>
+                <a href="mailto:tiago.f.a.correia@gmail.com">Talk to me</a>
+              </li>
             </ul>
           </div>
           <div className="content">

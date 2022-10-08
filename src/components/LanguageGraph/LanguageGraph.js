@@ -92,7 +92,7 @@ class LanguageGraph extends React.Component {
         }
       },
       python: {
-        projects: ["et", "portsel", "pirana", "rancher", "zenpull", "octometrist"],
+        projects: ["et", "portsel", "pirana", "rancher", "zenpull", "octometrist", "pita"],
         years: {
           startYear: 2012,
           endYear: this.currentYear
