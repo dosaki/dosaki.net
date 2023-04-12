@@ -98,5 +98,16 @@
         "source": "https://github.com/dosaki/glizi",
         "roles": ["maintainer"],
         "tags": ["gitlab", "zendesk"]
+    },
+    {
+        "icon": "https://rawcdn.githack.com/dosaki/sqlow/ee4d362cf32c97dd7433f3174feecff53fc89877/icon.svg",
+        "name": "Sqlow",
+        "link": null,
+        "description": "A CLI database schema migrator that doesn't care about versions.",
+        "type": "tool",
+        "status": "active",
+        "source": "https://github.com/dosaki/sqlow",
+        "roles": ["maintainer"],
+        "tags": ["sql", "migration", "database"]
     }
 ]
