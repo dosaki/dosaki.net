@@ -19,7 +19,6 @@ jobs:
       run:
         working-directory: .
     runs-on: ubuntu-latest
-    needs: create_release
     env:
       DEPLOYMENT_ENV: production
       NODE_OPTIONS: --openssl-legacy-provider
