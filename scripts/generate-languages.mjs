@@ -22,9 +22,22 @@ function loadSeed() {
   return seed
 }
 
+/**
+ * Unauthenticated api.github.com requests are capped at 60/hour per IP.
+ * GitHub Actions runners share heavily-used IP pools, so an unauthenticated
+ * build (~31 requests here) can easily hit that ceiling and 403. Sending a
+ * token — even the ambient `secrets.GITHUB_TOKEN` — raises the cap to
+ * 5,000/hour. Without it, the `catch` below silently falls back to seed
+ * data, so the failure mode is invisible unless you know to look for it.
+ */
 async function fetchJson(url) {
+  const token = process.env.GH_TOKEN
   const res = await fetch(url, {
-    headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'dosaki.net-build' },
+    headers: {
+      Accept: 'application/vnd.github+json',
+      'User-Agent': 'dosaki.net-build',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
   })
   if (!res.ok) throw new Error(`${res.status} ${res.statusText} for ${url}`)
   return res.json()

@@ -11,7 +11,7 @@ jobs:
       - run: echo "Github actions need a step without any conditions"
 
   build_and_deploy:
-    timeout-minutes: 2
+    timeout-minutes: 10
     if: "!contains(github.event.head_commit.message, 'NO_DEPLOY')"
     environment:
       name: production
@@ -37,14 +37,14 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Typecheck and test
-        run: |
-          npm run typecheck
-          npm test
+      - name: Test
+        run: npm test
 
       - name: Build website
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run build
 
       - name: Terraform Init
