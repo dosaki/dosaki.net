@@ -689,7 +689,7 @@ curl -s -o /tmp/talks.json    https://dosaki-public-dist.s3.eu-west-1.amazonaws.
 
 node -e "
 const fs = require('fs');
-const j = (s) => JSON.stringify(s);
+const j = (v) => JSON.stringify(v, null, 2);
 
 const projects = JSON.parse(fs.readFileSync('/tmp/projects.json','utf8')).map(p => ({
   name: p.name, description: p.description, icon: p.icon,
@@ -705,10 +705,10 @@ const talks = JSON.parse(fs.readFileSync('/tmp/talks.json','utf8')).map(t => ({
 
 fs.writeFileSync('src/content/projects.ts',
   \"import type { Project } from './types'\n\nexport const projects: Project[] = \" +
-  j(projects, null, 2) + '\n');
+  j(projects) + '\n');
 fs.writeFileSync('src/content/talks.ts',
   \"import type { Talk } from './types'\n\nexport const talks: Talk[] = \" +
-  j(talks, null, 2) + '\n');
+  j(talks) + '\n');
 
 console.log('projects:', projects.length, 'talks:', talks.length);
 "
