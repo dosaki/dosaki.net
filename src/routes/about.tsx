@@ -47,7 +47,6 @@ function About() {
       <img src={photo.src} alt={photo.alt} width={200} />
       <p>{aside}</p>
 
-      <p data-testid="chart-mode">{by}</p>
       <LanguageChart languages={languages} by={by} />
 
       <p>

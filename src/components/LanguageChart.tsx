@@ -62,7 +62,7 @@ export function LanguageChart({ languages, by }: LanguageChartProps) {
   }
 
   if (!supportsCanvas) {
-    return null
+    return <p>Language chart unavailable (canvas rendering is not supported here).</p>
   }
 
   return (
