@@ -3,6 +3,7 @@ import * as echarts from 'echarts/core'
 import { PieChart } from 'echarts/charts'
 import { LegendComponent, TitleComponent, TooltipComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
+import { chartValue } from '../content/ordering'
 import type { LanguageMap } from '../content/types'
 
 echarts.use([TooltipComponent, LegendComponent, TitleComponent, PieChart, CanvasRenderer])
@@ -33,10 +34,7 @@ const supportsCanvas =
 export function LanguageChart({ languages, by }: LanguageChartProps) {
   const data = Object.entries(languages).map(([name, stat]) => ({
     name,
-    value:
-      by === 'projects'
-        ? stat.projects.length
-        : (stat.endYear ?? 0) - (stat.startYear ?? 0) || 1,
+    value: chartValue(stat, by),
   }))
 
   const option = {
