@@ -255,7 +255,13 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 
 export default defineConfig({
   plugins: [
-    tanstackRouter({ target: 'react', autoCodeSplitting: true }),
+    tanstackRouter({
+      target: 'react',
+      autoCodeSplitting: true,
+      // Tests live beside the routes they exercise; keep the plugin from
+      // treating them as route files.
+      routeFileIgnorePattern: '.*\\.test\\.tsx?$',
+    }),
     react(),
   ],
   build: {
@@ -403,6 +409,9 @@ createRoot(rootElement).render(
 
 ```typescript
 import '@testing-library/jest-dom/vitest'
+
+// jsdom has no layout engine; the router's scroll restoration calls this.
+window.scrollTo = () => {}
 ```
 
 `src/test/renderAt.tsx` — renders the real generated route tree at a given path:

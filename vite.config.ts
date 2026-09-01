@@ -4,7 +4,13 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 
 export default defineConfig({
   plugins: [
-    tanstackRouter({ target: 'react', autoCodeSplitting: true }),
+    tanstackRouter({
+      target: 'react',
+      autoCodeSplitting: true,
+      // Tests live beside the routes they exercise; keep the plugin from
+      // treating them as route files.
+      routeFileIgnorePattern: '.*\\.test\\.tsx?$',
+    }),
     react(),
   ],
   build: {
