@@ -80,7 +80,6 @@ The contrast test comes first and is written TDD, because it is the guard rail e
 ```typescript
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
 
 /** Relative luminance per WCAG 2.1. */
 function luminance(hex: string): number {
@@ -99,10 +98,8 @@ function contrast(a: string, b: string): number {
 
 /** Every `--name: #hex;` declared in tokens.css. */
 function readTokens(): Record<string, string> {
-  const css = readFileSync(
-    resolve(__dirname, '../tokens.css'),
-    'utf8',
-  )
+  // package.json sets "type": "module", so __dirname does not exist here.
+  const css = readFileSync(new URL('../tokens.css', import.meta.url), 'utf8')
   const tokens: Record<string, string> = {}
   for (const [, name, value] of css.matchAll(
     /--([\w-]+):\s*(#[0-9a-fA-F]{6})\s*;/g,
@@ -1402,6 +1399,7 @@ Add to `ProjectCard.module.css`:
 
 ```css
 .bandRule {
+  grid-column: 1 / -1;   /* .card is a grid; the rule spans icon + body */
   display: flex;
   align-items: center;
   gap: var(--space-2);
@@ -1446,8 +1444,8 @@ export function ProjectCard({
       {/* ...unchanged content... */}
 ```
 
-The `<hr>` must sit inside the `<li>`, and `.card`'s `display: grid` needs the rule to
-span both columns — add `grid-column: 1 / -1;` to `.bandRule`.
+The `<hr>` must sit inside the `<li>`; `.bandRule` already carries
+`grid-column: 1 / -1` so it spans both columns of `.card`'s grid.
 
 In `src/routes/projects.tsx`, mark the first card of each band:
 
