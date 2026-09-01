@@ -1176,7 +1176,7 @@ Expected: PASS, 3 tests.
 - [ ] **Step 6: Commit**
 
 ```bash
-git add src/components/ProjectCard.tsx src/routes/projects.tsx src/routes/__tests__/projects.test.tsx
+git add src/components/ProjectCard.tsx src/routes/projects.tsx src/routes/__tests__/projects.test.tsx src/routeTree.gen.ts
 git commit -m "feat: add projects route"
 ```
 
@@ -1302,7 +1302,7 @@ Expected: PASS, 3 tests.
 - [ ] **Step 6: Commit**
 
 ```bash
-git add src/components/TalkCard.tsx src/routes/talks.tsx src/routes/__tests__/talks.test.tsx
+git add src/components/TalkCard.tsx src/routes/talks.tsx src/routes/__tests__/talks.test.tsx src/routeTree.gen.ts
 git commit -m "feat: add talks route"
 ```
 
@@ -1705,7 +1705,7 @@ rather than weakening the tests.
 - [ ] **Step 6: Commit**
 
 ```bash
-git add src/components/LanguageChart.tsx src/routes/about.tsx src/routes/__tests__/about.test.tsx
+git add src/components/LanguageChart.tsx src/routes/about.tsx src/routes/__tests__/about.test.tsx src/routeTree.gen.ts
 git commit -m "feat: add about route with URL-driven chart mode"
 ```
 
