@@ -1,0 +1,12 @@
+{
+  "javascript": { "projects": ["webnog", "pi", "config", "piet", "rend", "svgink", "glitzi", "wowdnd", "octometrist"], "startYear": 2008, "endYear": null },
+  "groovy":     { "projects": ["webn", "pi", "migrations", "parrot"], "startYear": 2012, "endYear": null },
+  "java":       { "projects": ["webn-proxy", "oldpi"], "startYear": 2012, "endYear": null },
+  "c#":         { "projects": [], "startYear": null, "endYear": null },
+  "go":         { "projects": ["config", "sched", "excre", "clinton", "helja"], "startYear": 2018, "endYear": null },
+  "lua":        { "projects": [], "startYear": null, "endYear": null },
+  "terraform":  { "projects": ["octometrist", "rancher"], "startYear": 2020, "endYear": null },
+  "sql":        { "projects": ["webn", "rancher", "pi", "sched"], "startYear": 2009, "endYear": null },
+  "python":     { "projects": ["et", "portsel", "pirana", "rancher", "zenpull", "octometrist", "pita"], "startYear": 2012, "endYear": null },
+  "shell":      { "projects": ["deploy", "deploy", "scripts", "builders", "hooks"], "startYear": 2012, "endYear": null }
+}
