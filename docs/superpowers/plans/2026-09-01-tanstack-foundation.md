@@ -498,6 +498,9 @@ yarn-error.log*
 # editors
 .idea/
 .vscode/
+
+# subagent-driven-development workspace
+.superpowers/
 ```
 
 - [ ] **Step 16: Commit**
