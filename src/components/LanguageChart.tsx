@@ -43,6 +43,22 @@ export function LanguageChart({ languages, by }: LanguageChartProps) {
   // --color-text (#F8F5E9), --color-surface (#0B0F16) and --color-border
   // (#334155) from src/styles/tokens.css. The ten-colour series palette
   // (COLOURS) is language-identity colour and is deliberately left alone.
+  //
+  // Slice border is --color-text (#F8F5E9), not --color-surface. With ten
+  // fills spanning near-black (shell #293036) to bright yellow (javascript
+  // #f7e018), no single border colour is a good compromise across all of
+  // them, and the border's job differs by wedge: a dark fill needs an
+  // outline to have any shape against the dark hole/frame; a bright fill
+  // already reads fine against the frame on its own and only wants a seam
+  // from its neighbours. A dark (surface-matching) border was tried first
+  // and made "shell" (real data — 5 projects) indistinguishable from the
+  // hole (fill-vs-frame 1.44:1, border-vs-frame 1.00:1). The light
+  // --color-text border instead gives the darkest wedges a strong,
+  // unmissable outline (shell 12.25:1, c# 12.43:1 against this border) and
+  // degrades to a faint seam on the brightest ones (javascript 1.23:1,
+  // python 1.44:1) — acceptable because those wedges are already highly
+  // legible on their own fill-vs-frame contrast (14.29:1, 12.23:1) and
+  // don't depend on the border to read as a shape.
   const option = {
     title: {
       text: by === 'projects' ? 'Languages used (by project)' : 'Languages used (by years used)',
@@ -72,7 +88,7 @@ export function LanguageChart({ languages, by }: LanguageChartProps) {
           fontFamily: 'Inter, system-ui, sans-serif',
           fontWeight: 600,
         },
-        itemStyle: { borderColor: '#0B0F16', borderWidth: 2 },
+        itemStyle: { borderColor: '#F8F5E9', borderWidth: 2 },
         data,
         color: COLOURS,
       },
