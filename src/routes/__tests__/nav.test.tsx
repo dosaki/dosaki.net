@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { screen } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import { renderAt } from '../../test/renderAt'
 
 describe('navigation', () => {
@@ -25,5 +25,27 @@ describe('navigation', () => {
   it('does not mark home active on a sub-route', async () => {
     renderAt('/about')
     expect(await screen.findByRole('link', { name: /home/i })).not.toHaveClass('active')
+  })
+
+  it('gives the home link an accessible name even though the mark is decorative', async () => {
+    renderAt('/')
+    const home = await screen.findByRole('link', { name: /home/i })
+    expect(home).toHaveAttribute('href', '/')
+  })
+
+  it('shows the wordmark and strapline', async () => {
+    renderAt('/')
+    expect(await screen.findByText('Tiago Correia')).toBeInTheDocument()
+    for (const word of ['Architect', 'Engineer', 'Strategist']) {
+      expect(screen.getByText(word)).toBeInTheDocument()
+    }
+  })
+
+  it('shows the footer motto', async () => {
+    renderAt('/')
+    const footer = await screen.findByRole('contentinfo')
+    for (const word of ['Build', 'Learn', 'Explore', 'Share']) {
+      expect(within(footer).getByText(word)).toBeInTheDocument()
+    }
   })
 })
