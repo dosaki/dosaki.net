@@ -77,3 +77,10 @@
 
 /* Task 1's rewrite removed the old global `.list` reset; card lists need it back. */
 .list { list-style: none; margin: 0; padding: 0; }
+
+.emphasis {
+  font-style: normal;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.aside { color: var(--color-text-muted); font-size: var(--size-small); }

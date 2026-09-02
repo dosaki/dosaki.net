@@ -19,7 +19,6 @@ export const site = {
   about: {
     heading: 'Tiago Correia / Dosaki',
     photo: { src: '/images/minime.jpg', alt: 'Me as a toddler at a computer' },
-    aside: "(yes that's me)",
     social: [
       { label: 'Email', href: 'mailto:tiago.f.a.correia@gmail.com', icon: 'envelope' },
       { label: 'LinkedIn', href: 'https://www.linkedin.com/in/dosaki/', icon: 'linkedin' },
@@ -37,15 +36,22 @@ export const site = {
         { text: 'Panintelligence', href: 'https://www.panintelligence.com/' },
         { text: ', where I got to play with data and mentor our devs.' },
       ],
-      [{ text: "Online, I use 'Dosaki' as my monicker." }],
-      [{ text: "Building things is my passion and I've been doing it for quite some time." }],
+      [
+        { text: "Online, I use '" },
+        { text: 'Dosaki', emphasis: true },
+        { text: "' as my monicker." },
+      ],
+      [
+        { text: "Building things is my passion and I've been doing it for quite some time. " },
+        { text: "(yes that's me)", aside: true },
+      ],
       [
         { text: 'I run the python and javascript sessions for my local Code Club to help kids learn how to program and I mentor a promising group at a ' },
         { text: 'CoderDojo', href: 'https://harrogatecoderdojo.github.io/' },
         { text: '.' },
       ],
       [{ text: "You'll find I talk mostly about tech, video, board games... and containers. I talk a lot about containers." }],
-    ] satisfies { text: string; href?: string }[][],
+    ] satisfies { text: string; href?: string; emphasis?: boolean; aside?: boolean }[][],
     languagesIntro: {
       prefix: 'I find myself making things with ',
       byProjects: 'various programming languages',

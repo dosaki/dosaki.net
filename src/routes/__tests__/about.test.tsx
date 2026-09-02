@@ -50,4 +50,18 @@ describe('about route', () => {
       screen.queryByRole('link', { name: 'various programming languages' }),
     ).not.toBeInTheDocument()
   })
+
+  it('emphasises the Dosaki monicker', async () => {
+    renderAt('/about')
+    const emphasised = await screen.findByText('Dosaki')
+    expect(emphasised.tagName).toBe('EM')
+  })
+
+  it('keeps the photo aside attached to the sentence it belongs to', async () => {
+    renderAt('/about')
+    const aside = await screen.findByText(/yes that's me/i)
+    // The aside belongs inside the "Building things is my passion" paragraph,
+    // not adrift after the photo.
+    expect(aside.closest('p')?.textContent).toMatch(/Building things is my passion/)
+  })
 })
