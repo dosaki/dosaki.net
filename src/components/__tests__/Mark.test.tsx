@@ -12,7 +12,11 @@ describe('Mark', () => {
     const { container } = render(<Mark />)
     const svg = container.querySelector('svg')
     expect(svg).toHaveAttribute('fill', 'currentColor')
-    expect(container.innerHTML).not.toMatch(/#[0-9a-fA-F]{6}/)
+    // Catch hex (3, 6 or 8 digit), functional colour syntax, and the named
+    // colours this palette would plausibly tempt someone into.
+    expect(container.innerHTML).not.toMatch(
+      /#[0-9a-fA-F]{3,8}\b|\brgba?\(|\bhsla?\(|\b(navy|gold|goldenrod|white|black|orange)\b/i,
+    )
   })
 
   it('is hidden from assistive tech unless given a title', () => {
