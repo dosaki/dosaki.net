@@ -3,6 +3,7 @@ import { TalkCard } from '../components/TalkCard'
 import { orderTalks } from '../content/ordering'
 import { talks } from '../content/talks'
 import { site } from '../content/site'
+import styles from '../styles/page.module.css'
 
 export const Route = createFileRoute('/talks')({
   component: Talks,
@@ -11,8 +12,10 @@ export const Route = createFileRoute('/talks')({
 function Talks() {
   return (
     <section>
+      <p className={styles.sectionLabel}>Speaking</p>
       <h1>{site.titles.talks}</h1>
-      <ul className="list" aria-label="Talks">
+      <hr className={styles.rule} />
+      <ul className={styles.list} aria-label="Talks">
         {orderTalks(talks).map((talk) => (
           <TalkCard key={talk.name} talk={talk} />
         ))}
