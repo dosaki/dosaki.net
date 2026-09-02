@@ -30,15 +30,21 @@ function About() {
 
   return (
     <section>
-      <h1>{heading}</h1>
+      <p className={styles.sectionLabel}>About</p>
+      <div className={styles.aboutHead}>
+        <h1>{heading}</h1>
 
-      <p>
-        {social.map((link) => (
-          <a key={link.href} href={link.href} aria-label={link.label}>
-            <Icon name={link.icon} title={link.label} />
-          </a>
-        ))}
-      </p>
+        <ul className={styles.social}>
+          {social.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} aria-label={link.label}>
+                <Icon name={link.icon} title={link.label} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <hr className={styles.rule} />
 
       {paragraphs.map((parts: ParagraphPart[], index) => (
         <p key={index} className={styles.measure}>
@@ -57,9 +63,11 @@ function About() {
         </p>
       ))}
 
-      <img src={photo.src} alt={photo.alt} width={200} />
+      <img src={photo.src} alt={photo.alt} width={200} className={styles.portrait} />
 
-      <LanguageChart languages={languages} by={by} />
+      <div className={styles.chartFrame}>
+        <LanguageChart languages={languages} by={by} />
+      </div>
 
       <p>
         {languagesIntro.prefix}

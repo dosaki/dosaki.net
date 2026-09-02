@@ -84,3 +84,24 @@
   font-weight: 600;
 }
 .aside { color: var(--color-text-muted); font-size: var(--size-small); }
+
+.aboutHead { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); }
+
+.social { display: flex; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+.social a { color: var(--color-accent); font-size: 1.25rem; display: inline-flex; }
+.social a:hover { color: var(--color-link); }
+
+.portrait {
+  border: 1px solid var(--color-accent);
+  border-radius: 3px;
+  padding: var(--space-1);
+  max-width: 200px;
+}
+
+.chartFrame {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: var(--space-3);
+  margin: var(--space-4) 0;
+}

@@ -37,14 +37,28 @@ export function LanguageChart({ languages, by }: LanguageChartProps) {
     value: chartValue(stat, by),
   }))
 
+  // echarts is configured in TypeScript and cannot read CSS custom
+  // properties, so this chrome (title/tooltip/label/slice border) is the
+  // one sanctioned exception to the tokens-only rule. These literals mirror
+  // --color-text (#F8F5E9), --color-surface (#0B0F16) and --color-border
+  // (#334155) from src/styles/tokens.css. The ten-colour series palette
+  // (COLOURS) is language-identity colour and is deliberately left alone.
   const option = {
     title: {
       text: by === 'projects' ? 'Languages used (by project)' : 'Languages used (by years used)',
       left: 'center',
-      textStyle: { color: '#ccc' },
+      textStyle: {
+        color: '#F8F5E9',
+        fontFamily: 'Poppins, system-ui, sans-serif',
+        fontWeight: 600,
+        fontSize: 15,
+      },
     },
     tooltip: {
       trigger: 'item',
+      backgroundColor: '#0B0F16',
+      borderColor: '#334155',
+      textStyle: { color: '#F8F5E9', fontFamily: 'Inter, system-ui, sans-serif' },
       formatter: (params: { name: string; value: number }) =>
         `${params.name}: ${params.value} ${by}`,
     },
@@ -52,7 +66,13 @@ export function LanguageChart({ languages, by }: LanguageChartProps) {
       {
         type: 'pie',
         radius: ['40%', '80%'],
-        label: { show: true, fontWeight: 'bold' },
+        label: {
+          show: true,
+          color: '#F8F5E9',
+          fontFamily: 'Inter, system-ui, sans-serif',
+          fontWeight: 600,
+        },
+        itemStyle: { borderColor: '#0B0F16', borderWidth: 2 },
         data,
         color: COLOURS,
       },
