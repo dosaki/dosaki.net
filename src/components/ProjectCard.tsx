@@ -35,8 +35,12 @@ export function ProjectCard({
         </p>
       </div>
       {project.source ? (
-        <a className={styles.source} href={project.source}>
-          {`${project.name} source`}
+        <a
+          className={styles.source}
+          href={project.source}
+          aria-label={`${project.name} source`}
+        >
+          source
         </a>
       ) : null}
     </li>

@@ -57,6 +57,16 @@
 }
 .source:hover { color: var(--color-accent); text-decoration: underline; }
 
+/* When a card both starts a status band and carries a source link, the band
+   rule's diamond terminator and the corner tab would both land in the top-right
+   corner. Drop the tab below the rule's row instead of shortening the rule —
+   the divider stays a full-width break between bands on every card, and the
+   tab keeps its usual size instead of shrinking on the minority of cards that
+   don't need the extra clearance. */
+.card:has(> .bandRule) .source {
+  top: 1.75rem;
+}
+
 /* The band divider between status groups (active, then done, then everything else). */
 .bandRule {
   grid-column: 1 / -1;   /* .card is a grid; the rule spans icon + body */
