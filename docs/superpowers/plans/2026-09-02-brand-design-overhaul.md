@@ -873,7 +873,13 @@ function RootLayout() {
 }
 ```
 
-**Note on `activeProps`:** it sets a plain `active` class, not a CSS-Modules-hashed one, which is why `layout.module.css` targets `.nav a.active` — a global class nested inside a scoped one. Vite scopes `.nav` but leaves `.active` alone, so this works. Do not try to pass a hashed class through `activeProps`; the router sets it as a literal string.
+**Note on `activeProps`:** it sets a plain `active` class as a literal string; the router cannot know about CSS Modules. **Vite hashes every class in a `.module.css` file, including `.active`** — so a bare `.nav a.active` compiles to `._nav_x a._active_x` and can never match the DOM. Escape the token explicitly:
+
+```css
+.nav a:global(.active) { color: var(--color-accent); font-weight: 600; }
+```
+
+Verify it rather than trusting it: fetch the compiled stylesheet from a running dev server (`curl localhost:<port>/src/styles/layout.module.css`) and confirm the emitted selector ends in a bare `.active`, not a hashed one.
 
 - [ ] **Step 6: Run the tests**
 
