@@ -1,0 +1,76 @@
+/* Section label: uppercase, tracked, gold — the board's section-header device. */
+.sectionLabel {
+  font-family: var(--font-heading);
+  font-size: var(--size-small);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  color: var(--color-accent);
+  margin: 0 0 var(--space-2);
+}
+
+/* Gold hairline terminating in a rotated square — the board's divider. */
+.rule {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-4) 0;
+  border: 0;
+  padding: 0;
+}
+.rule::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--color-accent),
+    color-mix(in srgb, var(--color-accent) 15%, transparent)
+  );
+}
+.rule::after {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg);
+  border: 1px solid var(--color-accent);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-6) 0;
+}
+
+/* Faint concentric circles behind the mark — home hero only. */
+.heroMark {
+  position: relative;
+  color: var(--color-accent);
+  display: grid;
+  place-items: center;
+}
+.heroMark::before,
+.heroMark::after {
+  content: '';
+  position: absolute;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 18%, transparent);
+  border-radius: 50%;
+}
+.heroMark::before { inset: -22%; }
+.heroMark::after { inset: -44%; }
+
+.positioning {
+  font-size: var(--size-hero);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.heroWarm { font-size: var(--size-h2); color: var(--color-text); margin: 0; font-weight: 400; }
+.heroAside { color: var(--color-text-muted); margin: 0; }
+
+.measure { max-width: var(--measure); }

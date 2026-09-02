@@ -1,6 +1,6 @@
 {
-  "short_name": "Dosaki's Lair",
-  "name": "Dosaki's Lair",
+  "short_name": "Tiago Correia",
+  "name": "Tiago Correia",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,6 +10,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#2e2836",
-  "background_color": "#ffffff"
+  "theme_color": "#0F172A",
+  "background_color": "#0F172A"
 }
