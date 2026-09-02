@@ -1,20 +1,27 @@
+// @vitest-environment node
+//
+// This file only reads a source file from disk; it needs no DOM. Forcing the
+// node environment (rather than the project-wide jsdom default) matters here
+// for a real reason: under jsdom, `new URL(relative, import.meta.url)`
+// resolves against jsdom's synthetic `http://localhost:3000/` location
+// instead of the file: base, so `readFileSync(new URL(...))` never finds
+// LanguageChart.tsx. Running this file in node keeps
+// `new URL('../LanguageChart.tsx', import.meta.url)` resolving to a real
+// file: URL, exactly as intended.
 import { describe, it, expect } from 'vitest'
-import ReactEChartsCore from 'echarts-for-react/esm/core'
+import { readFileSync } from 'node:fs'
 
 describe('LanguageChart echarts import', () => {
-  // Regression guard for a production crash: importing the CommonJS
-  // `echarts-for-react/lib/core` build under Vite's CJS interop resolves to
-  // an object, not the component, and React throws "Element type is
-  // invalid" the moment LanguageChart tries to render it. jsdom has no
-  // canvas, so LanguageChart itself always takes its text-fallback path in
-  // tests and never exercises this import at render time — this test only
-  // checks that the module specifier still resolves to a callable
-  // component under Vitest's transform. It would have caught the exact
-  // regression of pointing the import back at `lib/core`, but it is not a
-  // substitute for an actual browser render: Vitest's module transform
-  // differs from Vite's production/dev bundling of deep CJS paths, so this
-  // cannot prove the real browser bug is fixed or stays fixed.
-  it('resolves the echarts core export to a renderable component', () => {
-    expect(typeof ReactEChartsCore).toBe('function')
+  it('imports the ESM core build, not the CJS one', () => {
+    // echarts-for-react/lib/core is CommonJS; Vite's interop hands React an
+    // object instead of a component and /about crashes at runtime. The esm/
+    // build has a real default export. jsdom cannot catch this — it never
+    // mounts the chart (no canvas) and Vitest's transform honours the
+    // __esModule flag the CJS build sets — so this guards the specifier
+    // itself rather than pretending to test behaviour.
+    const src = readFileSync(new URL('../LanguageChart.tsx', import.meta.url), 'utf8')
+    expect(src).toMatch(/from 'echarts-for-react\/esm\/core'/)
+    expect(src).not.toMatch(/from 'echarts-for-react\/lib\/core'/)
+    expect(src).not.toMatch(/from 'echarts-for-react'/)
   })
 })

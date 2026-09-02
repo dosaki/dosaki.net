@@ -27,14 +27,14 @@ function RootLayout() {
             <Mark size={44} className={styles.mark} />
             <span className={styles.wordmark}>{site.brand.name}</span>
           </Link>
-          <ul className={styles.strapline}>
+          <ul className={styles.strapline} role="list">
             {site.brand.strapline.map((word) => (
               <li key={word}>{word}</li>
             ))}
           </ul>
         </div>
         <nav>
-          <ul className={styles.nav}>
+          <ul className={styles.nav} role="list">
             {NAV.map((item) => (
               <li key={item.to}>
                 <Link to={item.to} activeProps={{ className: 'active' }}>
@@ -54,7 +54,7 @@ function RootLayout() {
       </main>
 
       <footer className={styles.footer}>
-        <ul className={styles.motto}>
+        <ul className={styles.motto} role="list">
           {site.brand.motto.map((word) => (
             <li key={word}>{word}</li>
           ))}
