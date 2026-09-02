@@ -980,6 +980,9 @@ git commit -m "feat: brand the header, navigation and footer"
 .heroAside { color: var(--color-text-muted); margin: 0; }
 
 .measure { max-width: var(--measure); }
+
+/* Task 1's rewrite removed the old global `.list` reset; card lists need it back. */
+.list { list-style: none; margin: 0; padding: 0; }
 ```
 
 - [ ] **Step 2: Rewrite `src/routes/index.tsx`**
@@ -1386,6 +1389,16 @@ Then, inside the `<section>`, replace the bare `<h1>` with:
 
 For `talks.tsx` use the label `Speaking` and `site.titles.talks`. Do not change the `<h1>` text or the list `aria-label` — the existing tests assert both.
 
+**Also replace `className="list"` with `className={styles.list}` on the `<ul>` in BOTH
+routes.** Task 1's rewrite deleted the old global `.list` reset, so the bare class name
+now resolves to nothing and both lists render with bullets and default indentation. The
+`aria-label` stays exactly as it is; only the class changes.
+
+While you are here, confirm no `<img>` in the files you touch sets `height` without
+also setting `width`. `global.css` applies `img { max-width: 100%; height: auto; }`,
+which is the correct responsive default but overrides a lone `height` attribute and
+renders the image at its natural size.
+
 - [ ] **Step 6: Add the between-band dividers on Projects**
 
 The spec calls for a hairline rule between the status bands (active, then done, then
@@ -1457,7 +1470,7 @@ function Projects() {
       <p className={styles.sectionLabel}>Portfolio</p>
       <h1>{site.titles.projects}</h1>
       <hr className={styles.rule} />
-      <ul className="list" aria-label="Projects">
+      <ul className={styles.list} aria-label="Projects">
         {ordered.map((project, index) => (
           <ProjectCard
             key={project.name}
