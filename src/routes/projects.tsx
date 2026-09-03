@@ -19,12 +19,16 @@ function Projects() {
       <ul className={styles.grid} aria-label="Projects" role="list">
         {ordered.flatMap((project, index) => {
           const card = <ProjectCard key={project.name} project={project} />
+          // The only division that matters is archived vs not — not one break
+          // per status change.
           const startsBand =
-            index > 0 && project.status !== ordered[index - 1].status
+            index > 0 &&
+            project.status === 'inactive' &&
+            ordered[index - 1].status !== 'inactive'
           return startsBand
             ? [
                 <li
-                  key={`band-${project.status}`}
+                  key="band-archived"
                   className={styles.bandBreak}
                   aria-hidden="true"
                 >

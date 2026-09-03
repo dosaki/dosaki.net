@@ -21,12 +21,13 @@ describe('projects route', () => {
     )
   })
 
-  it('separates the status bands with a full-width rule between cards', async () => {
+  it('divides archived projects from the rest with a single full-width rule', async () => {
     renderAt('/projects')
     const list = await screen.findByRole('list', { name: 'Projects' })
-    // orderProjects bands as active -> done -> inactive, so two boundaries.
+    // The only grouping that matters is archived vs not, so exactly one break —
+    // not one per status change.
     const breaks = list.querySelectorAll(':scope > li[aria-hidden="true"]')
-    expect(breaks).toHaveLength(2)
+    expect(breaks).toHaveLength(1)
     // The rule must be its own grid row, not tucked inside a card — in a
     // wrapping grid a rule inside one cell is not a separator across the row.
     for (const el of breaks) {

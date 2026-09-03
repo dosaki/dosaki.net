@@ -8,13 +8,19 @@
   overflow: hidden;          /* clip the leading image to the card's radius */
 }
 
-/* Leading image, full card width. A fixed height keeps the tile rhythm across
-   a row; object-fit stops non-square source images distorting. */
+/* Leading image, full card width. `contain` shows every icon whole — the set
+   mixes 1.6:1 game screenshots with 1:1 logos, and `cover` was cropping ~37%
+   off the top and bottom of the square ones.
+   The box is sized by ratio rather than a fixed height because cards are
+   fluid: at ~340px wide a fixed 150px box is 2.27:1, which would letterbox
+   even the screenshots. 16/10 matches the dominant source shape at any width,
+   so screenshots fill it edge to edge and logos centre at the box's full
+   height. */
 .icon {
   display: block;
   width: 100%;
-  height: 150px;
-  object-fit: cover;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
   background: var(--color-bg);
 }
 
