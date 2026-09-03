@@ -14,7 +14,33 @@ export const languages: LanguageMap = {
       "svgink",
       "glitzi",
       "wowdnd",
-      "octometrist"
+      "octometrist",
+      "auto-ng-crud",
+      "black-cats-herbs-and-brews",
+      "brew-shrew",
+      "brew-shrew-server",
+      "cross-stitch",
+      "crowdj",
+      "detouring.show",
+      "dosaki.net",
+      "glizi",
+      "hell-inc",
+      "lockpick",
+      "not13",
+      "pi_embed_example",
+      "portrait-generator",
+      "preview-e-r-d",
+      "rainbow-trotters",
+      "retro-speech-maker",
+      "screeps-init",
+      "seating-planner",
+      "shortener",
+      "swords-and-quills",
+      "t2erd",
+      "t2erd-png",
+      "the-analyser",
+      "W-screen-world-example",
+      "webcomicat-engine"
     ],
     "startYear": 2008,
     "endYear": 2026
@@ -24,7 +50,11 @@ export const languages: LanguageMap = {
       "webn",
       "pi",
       "migrations",
-      "parrot"
+      "parrot",
+      "auto-ng-crud",
+      "christmastodon",
+      "groovy_script_import_test",
+      "webcomicat-engine"
     ],
     "startYear": 2012,
     "endYear": 2026
@@ -32,15 +62,19 @@ export const languages: LanguageMap = {
   "java": {
     "projects": [
       "webn-proxy",
-      "oldpi"
+      "oldpi",
+      "codename-strain",
+      "shortener"
     ],
     "startYear": 2012,
     "endYear": 2026
   },
   "c#": {
-    "projects": [],
-    "startYear": null,
-    "endYear": null
+    "projects": [
+      "codename-strain"
+    ],
+    "startYear": 2015,
+    "endYear": 2015
   },
   "go": {
     "projects": [
@@ -48,15 +82,21 @@ export const languages: LanguageMap = {
       "sched",
       "excre",
       "clinton",
-      "helja"
+      "helja",
+      "claude-sessions",
+      "emote-combat-server",
+      "gorm-revel-issue",
+      "sqlow"
     ],
-    "startYear": 2018,
+    "startYear": 2017,
     "endYear": 2026
   },
   "lua": {
-    "projects": [],
-    "startYear": null,
-    "endYear": null
+    "projects": [
+      "EmoteCombatAddon"
+    ],
+    "startYear": 2018,
+    "endYear": 2018
   },
   "terraform": {
     "projects": [
@@ -84,7 +124,13 @@ export const languages: LanguageMap = {
       "rancher",
       "zenpull",
       "octometrist",
-      "pita"
+      "pita",
+      "annoyer",
+      "codename-strain",
+      "diff_humaniser",
+      "lockpick",
+      "subreddit_header_countdown",
+      "warzone-map-buddy"
     ],
     "startYear": 2012,
     "endYear": 2026
@@ -95,7 +141,28 @@ export const languages: LanguageMap = {
       "deploy",
       "scripts",
       "builders",
-      "hooks"
+      "hooks",
+      "black-cats-herbs-and-brews",
+      "christmastodon",
+      "claude-sessions",
+      "cross-stitch",
+      "crowdj",
+      "emote-combat-server",
+      "glizi",
+      "hell-inc",
+      "lockpick",
+      "not13",
+      "portrait-generator",
+      "rainbow-trotters",
+      "retro-speech-maker",
+      "screeps-init",
+      "seating-planner",
+      "shortener",
+      "sqlow",
+      "strange-homeworlds",
+      "swords-and-quills",
+      "the-analyser",
+      "webcomicat-engine"
     ],
     "startYear": 2012,
     "endYear": 2026
