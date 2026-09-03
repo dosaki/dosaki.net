@@ -276,5 +276,5 @@ New tests:
 | The redrawn mark does not match the board closely enough | Sign-off gate before it is wired in (§5) |
 | Restyling silently changes behaviour | The 26 existing tests must pass untouched; any failure is a signal, not a thing to edit away |
 | Self-hosted fonts bloat the bundle | Subset to Latin, woff2 only, three faces total; measure and report |
-| Token sprawl — colours creeping into component CSS | Contrast test plus the rule that `tokens.css` is the only file containing raw hex |
+| Token sprawl — colours creeping into component CSS | Contrast test plus the rule that `tokens.css` is the only file containing raw hex, with three justified exceptions: `public/favicon.svg`, the echarts chrome block in `LanguageChart.tsx` (echarts reads plain TypeScript, not CSS custom properties), and one deliberate literal in `contrast.test.ts` |
 | The board's decorative density tempting an over-designed result | D6, and the board's own "clean, spacious and purposeful" tip as the tiebreaker |
