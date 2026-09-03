@@ -11,7 +11,7 @@ export function ProjectCard({
 }) {
   return (
     <li className={styles.card}>
-      {startsBand ? <hr className={styles.bandRule} /> : null}
+      {startsBand ? <hr className={styles.bandRule} aria-hidden="true" /> : null}
       <img
         src={project.icon}
         alt=""

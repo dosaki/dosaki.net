@@ -51,6 +51,11 @@ describe('brand tokens meet WCAG AA', () => {
     }
   })
 
+  // This list is maintained BY HAND — it is not derived from usage in the
+  // codebase, so it does not automatically grow when a component starts
+  // using a new colour pairing. When you introduce a pairing (e.g. a new
+  // component background/foreground combination), add a case for it here
+  // rather than assuming a missing entry means the pairing is unused.
   it.each([
     ['body text on page', 'color-text', 'color-bg'],
     ['body text on card', 'color-text', 'color-surface'],
@@ -59,6 +64,9 @@ describe('brand tokens meet WCAG AA', () => {
     ['link on page', 'color-link', 'color-bg'],
     ['link on card', 'color-link', 'color-surface'],
     ['accent on page', 'color-accent', 'color-bg'],
+    // Used by ProjectCard's .source tab, TalkCard's .icon, and the fourth
+    // word of the footer motto.
+    ['accent on card surface', 'color-accent', 'color-surface'],
     ['badge text on badge', 'color-badge-text', 'color-badge-bg'],
   ])('%s reaches 4.5:1', (_label, fg, bg) => {
     expect(contrast(t[fg], t[bg])).toBeGreaterThanOrEqual(4.5)
@@ -66,6 +74,10 @@ describe('brand tokens meet WCAG AA', () => {
 
   it('the focus ring reaches 3:1 against the page', () => {
     expect(contrast(t['color-accent'], t['color-bg'])).toBeGreaterThanOrEqual(3)
+  })
+
+  it('the focus ring reaches 3:1 against the card surface', () => {
+    expect(contrast(t['color-accent'], t['color-surface'])).toBeGreaterThanOrEqual(3)
   })
 
   it('rejects Arcane Blue as a text colour on navy', () => {

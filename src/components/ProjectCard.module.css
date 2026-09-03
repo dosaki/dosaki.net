@@ -15,7 +15,10 @@
 
 .body { min-width: 0; }
 
-.name { margin: 0 0 var(--space-1); }
+/* padding-right reserves room for the absolutely positioned .source tab so
+   wrapped titles never run under it (and, since .source has no background,
+   render through it). */
+.name { margin: 0 0 var(--space-1); padding-right: 4.5rem; }
 .name a { color: var(--color-text); text-decoration: none; }
 .name a:hover { color: var(--color-link); text-decoration: underline; }
 
@@ -32,7 +35,6 @@
 }
 
 .description { color: var(--color-text); }
-.description :global(a) { color: var(--color-link); }
 
 .tags {
   color: var(--color-text-muted);
@@ -55,7 +57,7 @@
   border-bottom: 1px solid var(--color-border);
   border-radius: 0 4px 0 4px;
 }
-.source:hover { color: var(--color-accent); text-decoration: underline; }
+.source:hover { text-decoration: underline; }
 
 /* When a card both starts a status band and carries a source link, the band
    rule's diamond terminator and the corner tab would both land in the top-right
@@ -67,31 +69,11 @@
   top: 1.75rem;
 }
 
-/* The band divider between status groups (active, then done, then everything else). */
+/* The band divider between status groups (active, then done, then everything else).
+   Reuses page.module.css's shared `.divider` device via `composes:` rather
+   than redefining the same ::before/::after pair a second time. */
 .bandRule {
+  composes: divider from '../styles/page.module.css';
   grid-column: 1 / -1;   /* .card is a grid; the rule spans icon + body */
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
   margin: 0 0 var(--space-3);
-  border: 0;
-  padding: 0;
-}
-.bandRule::before {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    var(--color-accent),
-    color-mix(in srgb, var(--color-accent) 15%, transparent)
-  );
-}
-.bandRule::after {
-  content: '';
-  flex: none;
-  width: 6px;
-  height: 6px;
-  transform: rotate(45deg);
-  border: 1px solid var(--color-accent);
 }

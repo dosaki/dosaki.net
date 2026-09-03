@@ -9,32 +9,42 @@
   margin: 0 0 var(--space-2);
 }
 
-/* Gold hairline terminating in a rotated square — the board's divider. */
-.rule {
+/* Shared divider device: a hairline terminating in a rotated square. Hoisted
+   here so page.tsx's `.rule` and ProjectCard's `.bandRule` (composes: from
+   this file) don't each redefine the same ::before/::after pair — only the
+   margin differs between the two usages, so that stays local to each class. */
+.divider {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  margin: var(--space-4) 0;
   border: 0;
   padding: 0;
 }
-.rule::before {
+.divider::before {
   content: '';
   flex: 1;
   height: 1px;
+  /* Held at 40% alpha (rather than fading to near-nothing) at the terminator
+     end so the line still reads as connected to the diamond that follows it. */
   background: linear-gradient(
     to right,
     var(--color-accent),
-    color-mix(in srgb, var(--color-accent) 15%, transparent)
+    color-mix(in srgb, var(--color-accent) 40%, transparent)
   );
 }
-.rule::after {
+.divider::after {
   content: '';
   flex: none;
   width: 6px;
   height: 6px;
   transform: rotate(45deg);
   border: 1px solid var(--color-accent);
+}
+
+/* Gold hairline terminating in a rotated square — the board's divider. */
+.rule {
+  composes: divider;
+  margin: var(--space-4) 0;
 }
 
 .hero {

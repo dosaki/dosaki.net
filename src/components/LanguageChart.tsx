@@ -1,12 +1,19 @@
 import ReactEChartsCore from 'echarts-for-react/esm/core'
 import * as echarts from 'echarts/core'
 import { PieChart } from 'echarts/charts'
-import { LegendComponent, TitleComponent, TooltipComponent } from 'echarts/components'
+import { AriaComponent, LegendComponent, TitleComponent, TooltipComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
 import { chartValue } from '../content/ordering'
 import type { LanguageMap } from '../content/types'
 
-echarts.use([TooltipComponent, LegendComponent, TitleComponent, PieChart, CanvasRenderer])
+echarts.use([
+  TooltipComponent,
+  LegendComponent,
+  TitleComponent,
+  AriaComponent,
+  PieChart,
+  CanvasRenderer,
+])
 
 /** Positional, aligned with the ten seed languages. */
 const COLOURS = [
@@ -60,6 +67,11 @@ export function LanguageChart({ languages, by }: LanguageChartProps) {
   // legible on their own fill-vs-frame contrast (14.29:1, 12.23:1) and
   // don't depend on the border to read as a shape.
   const option = {
+    // The chart is a bare <canvas>; its title is painted, not in the DOM, so
+    // without this it has no text alternative at all. echarts generates an
+    // aria-label description (and a semantic `role`) on the canvas from the
+    // title/series/data above.
+    aria: { enabled: true },
     title: {
       text: by === 'projects' ? 'Languages used (by project)' : 'Languages used (by years used)',
       left: 'center',

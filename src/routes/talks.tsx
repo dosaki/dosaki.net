@@ -14,8 +14,8 @@ function Talks() {
     <section>
       <p className={styles.sectionLabel}>Speaking</p>
       <h1>{site.titles.talks}</h1>
-      <hr className={styles.rule} />
-      <ul className={styles.list} aria-label="Talks">
+      <hr className={styles.rule} aria-hidden="true" />
+      <ul className={styles.list} aria-label="Talks" role="list">
         {orderTalks(talks).map((talk) => (
           <TalkCard key={talk.name} talk={talk} />
         ))}

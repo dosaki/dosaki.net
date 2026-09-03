@@ -15,8 +15,8 @@ function Projects() {
     <section>
       <p className={styles.sectionLabel}>Portfolio</p>
       <h1>{site.titles.projects}</h1>
-      <hr className={styles.rule} />
-      <ul className={styles.list} aria-label="Projects">
+      <hr className={styles.rule} aria-hidden="true" />
+      <ul className={styles.list} aria-label="Projects" role="list">
         {ordered.map((project, index) => (
           <ProjectCard
             key={project.name}

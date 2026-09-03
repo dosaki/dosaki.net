@@ -23,9 +23,12 @@
   letter-spacing: var(--track-label);
   padding: 0 var(--space-2);
   border-radius: 2px;
+  /* Matches ProjectCard's .badge, which set this explicitly; this one relied
+     on inheriting global.css's `p { margin: 0 0 var(--space-3) }` (1rem)
+     instead, so the two had drifted apart. */
+  margin-bottom: var(--space-2);
 }
 
 .description { color: var(--color-text); }
-.description :global(a) { color: var(--color-link); }
 
 .tags { color: var(--color-text-muted); font-size: var(--size-small); margin: var(--space-2) 0 0; }

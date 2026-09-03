@@ -100,5 +100,7 @@
   transform: rotate(45deg);
   background: var(--color-accent);
 }
-.motto li:nth-child(2) { color: var(--color-link); }
+/* Non-interactive text: use --color-text rather than --color-link so the
+   footer's colour rhythm doesn't borrow the link affordance for plain words. */
+.motto li:nth-child(2) { color: var(--color-text); }
 .motto li:nth-child(4) { color: var(--color-accent); }

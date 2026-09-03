@@ -34,7 +34,7 @@ function About() {
       <div className={styles.aboutHead}>
         <h1>{heading}</h1>
 
-        <ul className={styles.social}>
+        <ul className={styles.social} role="list">
           {social.map((link) => (
             <li key={link.href}>
               <a href={link.href} aria-label={link.label}>
@@ -44,7 +44,7 @@ function About() {
           ))}
         </ul>
       </div>
-      <hr className={styles.rule} />
+      <hr className={styles.rule} aria-hidden="true" />
 
       {paragraphs.map((parts: ParagraphPart[], index) => (
         <p key={index} className={styles.measure}>
