@@ -16,14 +16,24 @@ function Projects() {
       <p className={styles.sectionLabel}>Portfolio</p>
       <h1>{site.titles.projects}</h1>
       <hr className={styles.rule} aria-hidden="true" />
-      <ul className={styles.list} aria-label="Projects" role="list">
-        {ordered.map((project, index) => (
-          <ProjectCard
-            key={project.name}
-            project={project}
-            startsBand={index > 0 && project.status !== ordered[index - 1].status}
-          />
-        ))}
+      <ul className={styles.grid} aria-label="Projects" role="list">
+        {ordered.flatMap((project, index) => {
+          const card = <ProjectCard key={project.name} project={project} />
+          const startsBand =
+            index > 0 && project.status !== ordered[index - 1].status
+          return startsBand
+            ? [
+                <li
+                  key={`band-${project.status}`}
+                  className={styles.bandBreak}
+                  aria-hidden="true"
+                >
+                  <hr className={styles.bandBreakRule} />
+                </li>,
+                card,
+              ]
+            : [card]
+        })}
       </ul>
     </section>
   )

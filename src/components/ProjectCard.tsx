@@ -1,22 +1,14 @@
 import type { Project } from '../content/types'
 import styles from './ProjectCard.module.css'
 
-export function ProjectCard({
-  project,
-  startsBand = false,
-}: {
-  project: Project
-  /** Draws a divider above this card — set on the first card of each status band. */
-  startsBand?: boolean
-}) {
+export function ProjectCard({ project }: { project: Project }) {
   return (
     <li className={styles.card}>
-      {startsBand ? <hr className={styles.bandRule} aria-hidden="true" /> : null}
       <img
         src={project.icon}
         alt=""
-        width={64}
-        height={64}
+        width={240}
+        height={150}
         className={`${styles.icon} ${project.pixelatedImage ? 'pixelated' : ''}`}
       />
       <div className={styles.body}>

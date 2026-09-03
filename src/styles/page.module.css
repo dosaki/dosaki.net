@@ -88,6 +88,24 @@
 /* Task 1's rewrite removed the old global `.list` reset; card lists need it back. */
 .list { list-style: none; margin: 0; padding: 0; }
 
+/* Projects use a wrapping tile grid rather than a vertical list. Talks keep
+   `.list` — they carry no image, so the tile form does not suit them. */
+.grid {
+  composes: list;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+/* A status-band boundary. Its own full-width row, because a rule inside one
+   grid cell separates nothing. */
+.bandBreak { grid-column: 1 / -1; }
+/* `composes` is only valid on a single local class, never a descendant
+   selector, so the rule carries its own class rather than being reached
+   through `.bandBreak hr`. */
+.bandBreakRule { composes: divider; margin: var(--space-2) 0; }
+
 .emphasis {
   font-style: normal;
   color: var(--color-accent);
