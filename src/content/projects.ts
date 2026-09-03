@@ -16,7 +16,7 @@ export const projects: Project[] = [
   {
     "name": "The Analyser",
     "description": "A 13Kb game made for the <a href='http://2018.js13kgames.com/'>2018 js13k</a> gamejam about talking to AIs and confirming they're still fit to fulfil their functions or flag those that need to be brought offline.",
-    "icon": "https://js13kgames.com/games/the-analyser/__big.jpg",
+    "icon": "/images/the-analyser.jpg",
     "link": "http://analyser.dosaki.net/",
     "source": "https://github.com/dosaki/the-analyser",
     "type": "game",
@@ -36,7 +36,7 @@ export const projects: Project[] = [
   {
     "name": "Retro Speech Maker",
     "description": "A generator <a href='https://www.npmjs.com/package/retro-speech-maker'>library</a> for those speech sounds that accompany text in retro games. Extracted from my <a href='https://seating-space-planner.dosaki.net/'>Seating Space Planner</a> game.",
-    "icon": "https://dosaki.net/images/retro-speech-maker.png",
+    "icon": "https://rawcdn.githack.com/dosaki/retro-speech-maker/ad1bcd47ccdf7e40b546dd36d26b862e34b8b579/static/favicon.ico",
     "link": "https://github.com/dosaki/retro-speech-maker",
     "source": "https://github.com/dosaki/retro-speech-maker",
     "type": "tool",
