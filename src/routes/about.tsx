@@ -65,11 +65,11 @@ function About() {
         </div>
 
         <figure className={styles.portraitFigure}>
+          <img src={photo.src} alt={photo.alt} width={200} className={styles.portrait} />
           <figcaption className={styles.portraitNote}>
             <span className={styles.portraitLabel}>That&apos;s me!</span>
             <ScribbleArrow className={styles.portraitArrow} />
           </figcaption>
-          <img src={photo.src} alt={photo.alt} width={200} className={styles.portrait} />
         </figure>
       </div>
 
