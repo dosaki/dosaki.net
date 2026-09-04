@@ -1,0 +1,55 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "thursday"
+      time: "09:00"
+    # Every dependency here is pinned to an exact version, so each patch
+    # release would otherwise open its own pull request. The groups below batch
+    # them, and also keep packages that must move together in one PR: React and
+    # react-dom split across two PRs can each pass on their own and still leave
+    # a mismatched pair on master.
+    open-pull-requests-limit: 10
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      tanstack:
+        patterns:
+          - "@tanstack/*"
+      toolchain:
+        patterns:
+          - "vite"
+          - "@vitejs/*"
+          - "vitest"
+          - "jsdom"
+          - "@testing-library/*"
+          - "typescript"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "thursday"
+      time: "09:00"
+    groups:
+      actions:
+        patterns:
+          - "*"
+
+  # Currently finds nothing to update: terraform/ declares no
+  # `required_providers` block, and the one registry module
+  # (hashicorp/dir/template) has no `version` constraint. Dependabot can only
+  # bump a version that is written down. Kept so it starts working the moment
+  # those constraints are added.
+  - package-ecosystem: "terraform"
+    directory: "/terraform"
+    schedule:
+      interval: "weekly"
+      day: "thursday"
+      time: "09:00"

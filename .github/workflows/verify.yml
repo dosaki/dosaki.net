@@ -4,6 +4,9 @@ on:
   push:
     branches-ignore:
       - master
+      # Dependabot pushes its branch and opens the PR moments later, so both
+      # triggers fire for the same commit and the suite runs twice.
+      - "dependabot/**"
 
 jobs:
   verify:
