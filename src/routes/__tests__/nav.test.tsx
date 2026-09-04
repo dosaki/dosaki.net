@@ -36,9 +36,7 @@ describe('navigation', () => {
   it('shows the wordmark and strapline', async () => {
     renderAt('/')
     expect(await screen.findByText('Tiago Correia')).toBeInTheDocument()
-    for (const word of ['Architect', 'Engineer', 'Strategist']) {
-      expect(screen.getByText(word)).toBeInTheDocument()
-    }
+    expect(screen.getByText('Head of Technology')).toBeInTheDocument()
   })
 
   it('shows a copyright line in the footer', async () => {

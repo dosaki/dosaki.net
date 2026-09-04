@@ -3,7 +3,7 @@ import type { SocialLink } from './types'
 export const site = {
   brand: {
     name: 'Tiago Correia',
-    strapline: ['Architect', 'Engineer', 'Strategist'],
+    strapline: 'Head of Technology',
     positioning: 'Architecting solutions. Building impact.',
   },
   titles: {

@@ -152,8 +152,13 @@ Everything else is space.
 
 ## 7. Page treatment
 
-**Header** — mark, `TIAGO CORREIA` wordmark, and the `ARCHITECT • ENGINEER • STRATEGIST`
-strapline with diamond separators. Nav in letter-spaced caps; the active item is Golden
+**Header** — mark, `TIAGO CORREIA` wordmark, and the strapline.
+
+> **Amended after implementation:** the strapline is `HEAD OF TECHNOLOGY`, not the
+> board's `ARCHITECT • ENGINEER • STRATEGIST`. Tiago changed it to his actual title.
+> With a single phrase there are no words to separate, so the gold diamond separator
+> no longer appears between strapline words; the device survives as the rotated square
+> terminating the gold hairline rules. Nav in letter-spaced caps; the active item is Golden
 Hour. The URL-derived active state from the foundation is preserved exactly — restyling
 must not reintroduce the click-handler bug that rebuild fixed.
 

@@ -28,11 +28,7 @@ function RootLayout() {
               <Mark size={44} className={styles.mark} />
               <span className={styles.wordmark}>{site.brand.name}</span>
             </Link>
-            <ul className={styles.strapline} role="list">
-              {site.brand.strapline.map((word) => (
-                <li key={word}>{word}</li>
-              ))}
-            </ul>
+            <p className={styles.strapline}>{site.brand.strapline}</p>
           </div>
           <nav>
             <ul className={styles.nav} role="list">
