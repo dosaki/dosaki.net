@@ -18,18 +18,18 @@ function RootLayout() {
     <div className={styles.page}>
       <div className={styles.shell}>
         <header className={styles.header}>
-          <div>
-            <Link
-              to="/"
-              activeOptions={{ exact: true }}
-              className={styles.identity}
-              aria-label={`${site.brand.name} — home`}
-            >
-              <Mark size={44} className={styles.mark} />
+          <Link
+            to="/"
+            activeOptions={{ exact: true }}
+            className={styles.identity}
+            aria-label={`${site.brand.name} — home`}
+          >
+            <Mark size={44} className={styles.mark} />
+            <span className={styles.identityText}>
               <span className={styles.wordmark}>{site.brand.name}</span>
-            </Link>
-            <p className={styles.strapline}>{site.brand.strapline}</p>
-          </div>
+              <span className={styles.strapline}>{site.brand.strapline}</span>
+            </span>
+          </Link>
           <nav>
             <ul className={styles.nav} role="list">
               {NAV.map((item) => (
