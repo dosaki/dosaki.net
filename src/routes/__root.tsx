@@ -15,43 +15,45 @@ const NAV = [
 
 function RootLayout() {
   return (
-    <div className={styles.shell}>
-      <header className={styles.header}>
-        <div>
-          <Link
-            to="/"
-            activeOptions={{ exact: true }}
-            className={styles.identity}
-            aria-label={`${site.brand.name} — home`}
-          >
-            <Mark size={44} className={styles.mark} />
-            <span className={styles.wordmark}>{site.brand.name}</span>
-          </Link>
-          <ul className={styles.strapline} role="list">
-            {site.brand.strapline.map((word) => (
-              <li key={word}>{word}</li>
-            ))}
-          </ul>
-        </div>
-        <nav>
-          <ul className={styles.nav} role="list">
-            {NAV.map((item) => (
-              <li key={item.to}>
-                <Link to={item.to} activeProps={{ className: 'active' }}>
-                  {item.label}
-                </Link>
+    <div className={styles.page}>
+      <div className={styles.shell}>
+        <header className={styles.header}>
+          <div>
+            <Link
+              to="/"
+              activeOptions={{ exact: true }}
+              className={styles.identity}
+              aria-label={`${site.brand.name} — home`}
+            >
+              <Mark size={44} className={styles.mark} />
+              <span className={styles.wordmark}>{site.brand.name}</span>
+            </Link>
+            <ul className={styles.strapline} role="list">
+              {site.brand.strapline.map((word) => (
+                <li key={word}>{word}</li>
+              ))}
+            </ul>
+          </div>
+          <nav>
+            <ul className={styles.nav} role="list">
+              {NAV.map((item) => (
+                <li key={item.to}>
+                  <Link to={item.to} activeProps={{ className: 'active' }}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <a href="mailto:tiago.f.a.correia@gmail.com">Talk to me</a>
               </li>
-            ))}
-            <li>
-              <a href="mailto:tiago.f.a.correia@gmail.com">Talk to me</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+            </ul>
+          </nav>
+        </header>
 
-      <main className={styles.main}>
-        <Outlet />
-      </main>
+        <main className={styles.main}>
+          <Outlet />
+        </main>
+      </div>
 
       <footer className={styles.footer}>
         <p className={styles.copyright}>
