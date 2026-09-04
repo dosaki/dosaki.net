@@ -4,12 +4,12 @@ export const site = {
   brand: {
     name: 'Tiago Correia',
     strapline: 'Head of Technology',
-    positioning: 'Architecting solutions. Building impact.',
+    positioning: '',
   },
   meta: {
     title: 'Tiago Correia · Head of Technology',
     description:
-      'Tiago Correia — Head of Technology. Things I make, things I talk about.',
+      'Tiago Correia · Head of Technology. Things I make, things I talk about.',
   },
   titles: {
     projects: 'Stuff I make',
@@ -18,10 +18,9 @@ export const site = {
   home: {
     heading: "Hi! I'm Tiago and I make things!",
     small: 'Also I mentor kids with their programming.',
-    smaller: 'And I talk way too much about containers...',
   },
   about: {
-    heading: 'Tiago Correia / Dosaki',
+    heading: 'Tiago "Dosaki" Correia',
     photo: { src: '/images/minime.jpg', alt: 'Me as a toddler at a computer' },
     social: [
       { label: 'Email', href: 'mailto:tiago.f.a.correia@gmail.com', icon: 'envelope' },

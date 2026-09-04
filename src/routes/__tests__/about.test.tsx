@@ -1,12 +1,13 @@
 import { describe, it, expect } from 'vitest'
 import { screen } from '@testing-library/react'
 import { renderAt } from '../../test/renderAt'
+import { site } from '../../content/site'
 
 describe('about route', () => {
   it('renders the heading and biography', async () => {
     renderAt('/about')
     expect(
-      await screen.findByRole('heading', { name: 'Tiago Correia / Dosaki' }),
+      await screen.findByRole('heading', { name: site.about.heading }),
     ).toBeInTheDocument()
     expect(
       screen.getByText(/software developer from Portugal/i),
@@ -64,7 +65,7 @@ describe('about route', () => {
 
   it('no longer repeats the annotation inline in the biography', async () => {
     renderAt('/about')
-    await screen.findByRole('heading', { name: 'Tiago Correia / Dosaki' })
+    await screen.findByRole('heading', { name: site.about.heading })
     expect(screen.queryByText(/yes that's me/i)).not.toBeInTheDocument()
   })
 })
