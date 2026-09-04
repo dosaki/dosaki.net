@@ -6,6 +6,11 @@ export const site = {
     strapline: 'Head of Technology',
     positioning: 'Architecting solutions. Building impact.',
   },
+  meta: {
+    title: 'Tiago Correia · Head of Technology',
+    description:
+      'Tiago Correia — Head of Technology. Things I make, things I talk about.',
+  },
   titles: {
     projects: 'Stuff I make',
     talks: 'Stuff I talk about',
