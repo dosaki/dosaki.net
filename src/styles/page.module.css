@@ -111,7 +111,6 @@
   color: var(--color-accent);
   font-weight: 600;
 }
-.aside { color: var(--color-text-muted); font-size: var(--size-small); }
 
 .aboutHead { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); }
 
@@ -119,12 +118,39 @@
 .social a { color: var(--color-accent); font-size: 1.25rem; display: inline-flex; }
 .social a:hover { color: var(--color-link); }
 
+/* Biography beside the portrait. Stacks below 44rem so the photo follows the
+   text it annotates rather than crowding it on a phone. */
+.bio {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+@media (min-width: 44rem) {
+  .bio { grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-5); }
+}
+
+.portraitFigure { margin: 0; display: flex; flex-direction: column; align-items: center; }
+
 .portrait {
   border: 1px solid var(--color-accent);
   border-radius: 3px;
   padding: var(--space-1);
   max-width: 200px;
 }
+
+/* The note sits beneath the photo: the arrow rises left-to-right so its head
+   lands under the portrait, with the label trailing at the shaft's tail. */
+.portraitNote {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  color: var(--color-accent);
+  font-style: italic;
+  font-size: var(--size-small);
+}
+.portraitArrow { width: 4.5rem; height: auto; flex: none; }
 
 .chartFrame {
   background: var(--color-surface);

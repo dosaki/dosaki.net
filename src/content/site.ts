@@ -41,8 +41,7 @@ export const site = {
         { text: "' as my monicker." },
       ],
       [
-        { text: "Building things is my passion and I've been doing it for quite some time. " },
-        { text: "(yes that's me)", aside: true },
+        { text: "Building things is my passion and I've been doing it for quite some time." },
       ],
       [
         { text: 'I run the python and javascript sessions for my local Code Club to help kids learn how to program and I mentor a promising group at a ' },
@@ -50,7 +49,7 @@ export const site = {
         { text: '.' },
       ],
       [{ text: "You'll find I talk mostly about tech, video, board games... and containers. I talk a lot about containers." }],
-    ] satisfies { text: string; href?: string; emphasis?: boolean; aside?: boolean }[][],
+    ] satisfies { text: string; href?: string; emphasis?: boolean }[][],
     languagesIntro: {
       prefix: 'I find myself making things with ',
       byProjects: 'various programming languages',

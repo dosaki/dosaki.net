@@ -1,6 +1,7 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { Icon } from '../icons/Icon'
 import { LanguageChart, type ChartMode } from '../components/LanguageChart'
+import { ScribbleArrow } from '../components/ScribbleArrow'
 import { languages } from '../content/languages.generated'
 import { site } from '../content/site'
 import styles from '../styles/page.module.css'
@@ -14,7 +15,7 @@ interface AboutSearch {
 // which prevents accessing `part.href` etc. across the whole union. This type
 // mirrors the `satisfies` clause in site.ts so the map callback can read any
 // of the optional flags without re-triggering that inference.
-type ParagraphPart = { text: string; href?: string; emphasis?: boolean; aside?: boolean }
+type ParagraphPart = { text: string; href?: string; emphasis?: boolean }
 
 export const Route = createFileRoute('/about')({
   validateSearch: (search: Record<string, unknown>): AboutSearch => ({
@@ -46,24 +47,31 @@ function About() {
       </div>
       <hr className={styles.rule} aria-hidden="true" />
 
-      {paragraphs.map((parts: ParagraphPart[], index) => (
-        <p key={index} className={styles.measure}>
-          {parts.map((part, partIndex) => {
-            if (part.href) {
-              return <a key={partIndex} href={part.href}>{part.text}</a>
-            }
-            if (part.emphasis) {
-              return <em key={partIndex} className={styles.emphasis}>{part.text}</em>
-            }
-            if (part.aside) {
-              return <span key={partIndex} className={styles.aside}>{part.text}</span>
-            }
-            return <span key={partIndex}>{part.text}</span>
-          })}
-        </p>
-      ))}
+      <div className={styles.bio}>
+        <div>
+        {paragraphs.map((parts: ParagraphPart[], index) => (
+          <p key={index} className={styles.measure}>
+            {parts.map((part, partIndex) => {
+              if (part.href) {
+                return <a key={partIndex} href={part.href}>{part.text}</a>
+              }
+              if (part.emphasis) {
+                return <em key={partIndex} className={styles.emphasis}>{part.text}</em>
+              }
+              return <span key={partIndex}>{part.text}</span>
+            })}
+          </p>
+        ))}
+        </div>
 
-      <img src={photo.src} alt={photo.alt} width={200} className={styles.portrait} />
+        <figure className={styles.portraitFigure}>
+          <img src={photo.src} alt={photo.alt} width={200} className={styles.portrait} />
+          <figcaption className={styles.portraitNote}>
+            <ScribbleArrow className={styles.portraitArrow} />
+            <span>That&apos;s me!</span>
+          </figcaption>
+        </figure>
+      </div>
 
       <div className={styles.chartFrame}>
         <LanguageChart languages={languages} by={by} />

@@ -57,11 +57,14 @@ describe('about route', () => {
     expect(emphasised.tagName).toBe('EM')
   })
 
-  it('keeps the photo aside attached to the sentence it belongs to', async () => {
+  it('annotates the portrait with a scribbled arrow', async () => {
     renderAt('/about')
-    const aside = await screen.findByText(/yes that's me/i)
-    // The aside belongs inside the "Building things is my passion" paragraph,
-    // not adrift after the photo.
-    expect(aside.closest('p')?.textContent).toMatch(/Building things is my passion/)
+    expect(await screen.findByText("That's me!")).toBeInTheDocument()
+  })
+
+  it('no longer repeats the annotation inline in the biography', async () => {
+    renderAt('/about')
+    await screen.findByRole('heading', { name: 'Tiago Correia / Dosaki' })
+    expect(screen.queryByText(/yes that's me/i)).not.toBeInTheDocument()
   })
 })
