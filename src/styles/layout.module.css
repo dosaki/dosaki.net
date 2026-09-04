@@ -1,0 +1,88 @@
+/* Full-bleed column. The footer lives here rather than inside .shell so its
+   band spans the viewport without a `calc(50% - 50vw)` escape — that trick
+   measures 50vw including the scrollbar and overhangs on any scrolling page. */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.shell {
+  flex: 1;                 /* pushes the footer to the bottom on short pages */
+  width: 100%;
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.header { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-accent);
+  text-decoration: none;
+}
+.mark { flex: none; }
+
+/* Stacks the wordmark and the title beside the mark, so the title sits under
+   the name rather than under the logo. */
+.identityText { display: flex; flex-direction: column; gap: var(--space-1); }
+
+.wordmark {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-wordmark);
+  color: var(--color-accent);
+  font-size: var(--size-h2);
+  margin: 0;
+}
+
+.strapline {
+  margin: 0;
+  font-size: var(--size-small);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  color: var(--color-text-muted);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: var(--space-3) 0 0;
+  border-top: 1px solid var(--color-border);
+}
+.nav a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: var(--size-small);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+}
+.nav a:hover { color: var(--color-link); }
+.nav a:global(.active) { color: var(--color-accent); font-weight: 600; }
+
+.main { flex: 1; }
+
+.footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-3);
+}
+/* Constrained inside the full-width band so it lines up with the content
+   column above it. */
+.copyright {
+  max-width: var(--shell);
+  margin: 0 auto;
+  text-align: center;
+  font-size: var(--size-small);
+  color: var(--color-text-muted);
+}

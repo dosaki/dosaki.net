@@ -1,0 +1,98 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;          /* clip the leading image to the card's radius */
+}
+
+/* Leading image, full card width. `contain` shows every icon whole — the set
+   mixes 1.6:1 game screenshots with 1:1 logos, and `cover` was cropping ~37%
+   off the top and bottom of the square ones.
+   The box is sized by ratio rather than a fixed height because cards are
+   fluid: at ~340px wide a fixed 150px box is 2.27:1, which would letterbox
+   even the screenshots. 16/10 matches the dominant source shape at any width,
+   so screenshots fill it edge to edge and logos centre at the box's full
+   height. */
+.icon {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  background: var(--color-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-3);
+}
+
+/* The .source tab now sits over the leading image, not beside the title, so
+   the title needs no right-hand clearance. */
+.name {
+  margin: 0 0 var(--space-2);
+  text-align: center;
+  font-size: var(--size-h2);
+}
+.name a { color: var(--color-text); text-decoration: none; }
+.name a:hover { color: var(--color-link); text-decoration: underline; }
+
+.badge {
+  display: inline-block;
+  /* .body is a flex column, whose default `align-items: stretch` would pull an
+     inline-block to the full card width. */
+  align-self: flex-start;
+  background: var(--color-badge-bg);
+  color: var(--color-badge-text);
+  font-size: var(--size-small);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  padding: 0 var(--space-2);
+  border-radius: 2px;
+  margin-bottom: var(--space-2);
+}
+
+.description { color: var(--color-text); }
+
+/* Pinned to the bottom so the footers line up across a row of unequal-length
+   cards. Language marks and tags share the row; the tags are pushed right so
+   the marks stay in a consistent column down the grid. */
+.footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: auto 0 0;
+  padding-top: var(--space-2);
+}
+
+.tags {
+  color: var(--color-text-muted);
+  font-size: var(--size-small);
+  margin: 0 0 0 auto;
+  text-align: right;
+}
+
+/* The board's corner device, replacing the old rotated ribbon. */
+.source {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: var(--size-small);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  color: var(--color-accent);
+  text-decoration: none;
+  /* Opaque now: the tab overlays the image, where transparent text would be
+     unreadable against an arbitrary screenshot. */
+  background: var(--color-surface);
+  padding: var(--space-1) var(--space-2);
+  border-left: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0 4px 0 4px;
+}
+.source:hover { text-decoration: underline; }
