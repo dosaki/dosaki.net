@@ -32,7 +32,7 @@ export const site = {
       [
         { text: 'I work at ' },
         { text: 'The Keyholding Company', href: 'https://keyholding.com/' },
-        { text: ' as the Lead Backend Developer.' },
+        { text: ' as the Head of Technology.' },
       ],
       [
         { text: 'Before, I worked as the Software Development Manager at ' },
@@ -48,11 +48,11 @@ export const site = {
         { text: "Building things is my passion and I've been doing it for quite some time." },
       ],
       [
-        { text: 'I run the python and javascript sessions for my local Code Club to help kids learn how to program and I mentor a promising group at a ' },
+        { text: 'I run my local ' },
         { text: 'CoderDojo', href: 'https://harrogatecoderdojo.github.io/' },
-        { text: '.' },
+        { text: ' and mentor a promising group.' },
       ],
-      [{ text: "You'll find I talk mostly about tech, video, board games... and containers. I talk a lot about containers." }],
+      [{ text: "You'll find I talk mostly about tech, video and board games." }],
     ] satisfies { text: string; href?: string; emphasis?: boolean }[][],
   },
 }

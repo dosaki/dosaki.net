@@ -18,3 +18,6 @@ yarn-error.log*
 
 # subagent-driven-development workspace
 .superpowers/
+
+# working notes from skill-driven development; not part of the site
+/docs/superpowers/
