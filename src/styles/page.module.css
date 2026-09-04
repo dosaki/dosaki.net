@@ -153,6 +153,10 @@
   align-items: center;
   gap: var(--space-1);
   color: var(--color-accent);
+  /* Nudged right so the arrow's head lands over the photo's left half rather
+     than off its edge. */
+  align-self: center;
+  margin-left: var(--space-5);
 }
 
 /* Angled, so it reads as scribbled onto the page rather than set in it. */
@@ -164,9 +168,16 @@
   transform-origin: center;
 }
 
-/* One generic right-pointing arrow; the angle it points is a layout concern,
-   so it is rotated here rather than redrawn. */
-.portraitArrow { width: 5.5rem; height: auto; flex: none; transform: rotate(-38deg); }
+/* One generic right-pointing arrow; where it aims is a layout concern, so it
+   is mirrored and rotated here rather than redrawn. Transforms apply
+   right-to-left: mirror first, then rotate, giving an up-and-left sweep whose
+   head lands on the left-centre of the photo — where the face is. */
+.portraitArrow {
+  width: 5rem;
+  height: auto;
+  flex: none;
+  transform: rotate(38deg) scaleX(-1);
+}
 
 .chartFrame {
   background: var(--color-surface);

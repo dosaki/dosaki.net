@@ -67,8 +67,8 @@ function About() {
         <figure className={styles.portraitFigure}>
           <img src={photo.src} alt={photo.alt} width={200} className={styles.portrait} />
           <figcaption className={styles.portraitNote}>
-            <span className={styles.portraitLabel}>That&apos;s me!</span>
             <ScribbleArrow className={styles.portraitArrow} />
+            <span className={styles.portraitLabel}>That&apos;s me!</span>
           </figcaption>
         </figure>
       </div>
