@@ -4,7 +4,6 @@ export const site = {
   brand: {
     name: 'Tiago Correia',
     strapline: ['Architect', 'Engineer', 'Strategist'],
-    motto: ['Build', 'Learn', 'Explore', 'Share'],
     positioning: 'Architecting solutions. Building impact.',
   },
   titles: {

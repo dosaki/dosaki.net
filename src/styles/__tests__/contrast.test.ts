@@ -65,7 +65,7 @@ describe('brand tokens meet WCAG AA', () => {
     ['link on card', 'color-link', 'color-surface'],
     ['accent on page', 'color-accent', 'color-bg'],
     // Used by ProjectCard's .source tab, TalkCard's .icon, and the fourth
-    // word of the footer motto.
+    // corner tab on a project card and the talk-card icon.
     ['accent on card surface', 'color-accent', 'color-surface'],
     ['badge text on badge', 'color-badge-text', 'color-badge-bg'],
   ])('%s reaches 4.5:1', (_label, fg, bg) => {

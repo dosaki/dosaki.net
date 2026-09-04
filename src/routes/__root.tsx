@@ -54,11 +54,9 @@ function RootLayout() {
       </main>
 
       <footer className={styles.footer}>
-        <ul className={styles.motto} role="list">
-          {site.brand.motto.map((word) => (
-            <li key={word}>{word}</li>
-          ))}
-        </ul>
+        <p className={styles.copyright}>
+          © {new Date().getFullYear()} {site.brand.name}
+        </p>
       </footer>
     </div>
   )

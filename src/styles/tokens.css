@@ -20,7 +20,6 @@
   --font-body: 'Inter', system-ui, sans-serif;
   --track-wordmark: 0.25em;
   --track-label: 0.15em;
-  --track-motto: 0.2em;
   --track-hero: 0.04em;
   --size-hero: clamp(1.75rem, 1.1rem + 3.2vw, 3rem);
   --size-h1: clamp(1.5rem, 1.1rem + 2vw, 2.25rem);

@@ -41,11 +41,12 @@ describe('navigation', () => {
     }
   })
 
-  it('shows the footer motto', async () => {
+  it('shows a copyright line in the footer', async () => {
     renderAt('/')
     const footer = await screen.findByRole('contentinfo')
-    for (const word of ['Build', 'Learn', 'Explore', 'Share']) {
-      expect(within(footer).getByText(word)).toBeInTheDocument()
-    }
+    // The year is derived, not hardcoded, so this does not break in January.
+    expect(
+      within(footer).getByText(`© ${new Date().getFullYear()} Tiago Correia`),
+    ).toBeInTheDocument()
   })
 })
