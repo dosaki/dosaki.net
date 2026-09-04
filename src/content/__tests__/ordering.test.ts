@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { chartValue, orderProjects, orderTalks } from '../ordering'
-import type { LanguageStat, Project, Talk } from '../types'
+import { orderProjects, orderTalks } from '../ordering'
+import type { Project, Talk } from '../types'
 
 const project = (over: Partial<Project>): Project => ({
   name: 'x', description: '', icon: '', link: null, source: null,
-  type: 'tool', status: 'active', tags: [], ...over,
+  type: 'tool', status: 'active', tags: [], languages: [], ...over,
 })
 
 const talk = (over: Partial<Talk>): Talk => ({
@@ -52,27 +52,4 @@ describe('orderTalks', () => {
   })
 })
 
-const stat = (over: Partial<LanguageStat>): LanguageStat => ({
-  projects: [],
-  startYear: null,
-  endYear: null,
-  ...over,
-})
 
-describe('chartValue', () => {
-  it('projects mode returns the project count', () => {
-    expect(chartValue(stat({ projects: ['a', 'b', 'c'] }), 'projects')).toBe(3)
-  })
-
-  it('years mode returns the span between start and end year', () => {
-    expect(chartValue(stat({ startYear: 2012, endYear: 2020 }), 'years')).toBe(8)
-  })
-
-  it('falls back to 1 when both years are null (e.g. c#/lua)', () => {
-    expect(chartValue(stat({ startYear: null, endYear: null }), 'years')).toBe(1)
-  })
-
-  it('returns 1 for a one-year span', () => {
-    expect(chartValue(stat({ startYear: 2020, endYear: 2021 }), 'years')).toBe(1)
-  })
-})

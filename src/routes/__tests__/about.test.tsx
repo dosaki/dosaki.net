@@ -22,34 +22,16 @@ describe('about route', () => {
     )
   })
 
-  it('defaults the chart mode to projects', async () => {
+
+
+
+  it('no longer renders the language chart or its mode toggle', async () => {
     renderAt('/about')
-    // In projects mode the "by years" phrase is the actionable toggle...
-    expect(await screen.findByRole('link', { name: 'a few years' })).toBeInTheDocument()
-    // ...and the "by projects" phrase is inert text, not a link.
-    expect(
-      screen.queryByRole('link', { name: 'various programming languages' }),
-    ).not.toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Show by years' })).toHaveAttribute(
-      'href',
-      expect.stringContaining('by=years'),
-    )
-  })
-
-  it('reads the chart mode from the URL', async () => {
-    renderAt('/about?by=years')
-    expect(
-      await screen.findByRole('link', { name: 'various programming languages' }),
-    ).toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: 'a few years' })).not.toBeInTheDocument()
-  })
-
-  it('falls back to projects for an unknown mode', async () => {
-    renderAt('/about?by=nonsense')
-    expect(await screen.findByRole('link', { name: 'a few years' })).toBeInTheDocument()
-    expect(
-      screen.queryByRole('link', { name: 'various programming languages' }),
-    ).not.toBeInTheDocument()
+    await screen.findByRole('heading', { name: site.about.heading })
+    // The languages now live on the project cards, so nothing on About should
+    // offer a way to switch how they are counted.
+    expect(screen.queryByRole('link', { name: /show by/i })).not.toBeInTheDocument()
+    expect(document.querySelector('canvas')).toBeNull()
   })
 
   it('emphasises the Dosaki monicker', async () => {

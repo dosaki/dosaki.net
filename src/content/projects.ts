@@ -11,7 +11,8 @@ export const projects: Project[] = [
     "status": "inactive",
     "tags": [
       "game"
-    ]
+    ],
+    "languages": []
   },
   {
     "name": "The Analyser",
@@ -21,7 +22,11 @@ export const projects: Project[] = [
     "source": "https://github.com/dosaki/the-analyser",
     "type": "game",
     "status": "done",
-    "tags": []
+    "tags": [],
+    "languages": [
+      "javascript",
+      "terraform"
+    ]
   },
   {
     "name": "Seating Space Planner",
@@ -31,7 +36,11 @@ export const projects: Project[] = [
     "source": "https://github.com/dosaki/seating-planner",
     "type": "game",
     "status": "done",
-    "tags": []
+    "tags": [],
+    "languages": [
+      "javascript",
+      "terraform"
+    ]
   },
   {
     "name": "Retro Speech Maker",
@@ -45,7 +54,12 @@ export const projects: Project[] = [
       "sound",
       "generator"
     ],
-    "pixelatedImage": true
+    "pixelatedImage": true,
+    "languages": [
+      "javascript",
+      "terraform",
+      "shell"
+    ]
   },
   {
     "name": "Portrait Generator",
@@ -57,6 +71,11 @@ export const projects: Project[] = [
     "status": "active",
     "tags": [
       "generator"
+    ],
+    "languages": [
+      "javascript",
+      "terraform",
+      "shell"
     ]
   },
   {
@@ -67,7 +86,11 @@ export const projects: Project[] = [
     "source": "https://github.com/dosaki/hell-inc",
     "type": "game",
     "status": "done",
-    "tags": []
+    "tags": [],
+    "languages": [
+      "javascript",
+      "terraform"
+    ]
   },
   {
     "name": "PIcons",
@@ -80,6 +103,10 @@ export const projects: Project[] = [
     "tags": [
       "icons",
       "font"
+    ],
+    "languages": [
+      "python",
+      "shell"
     ]
   },
   {
@@ -92,6 +119,9 @@ export const projects: Project[] = [
     "status": "inactive",
     "tags": [
       "discord"
+    ],
+    "languages": [
+      "javascript"
     ]
   },
   {
@@ -105,6 +135,9 @@ export const projects: Project[] = [
     "tags": [
       "gitlab",
       "zendesk"
+    ],
+    "languages": [
+      "javascript"
     ]
   },
   {
@@ -119,6 +152,10 @@ export const projects: Project[] = [
       "sql",
       "migration",
       "database"
+    ],
+    "languages": [
+      "go",
+      "shell"
     ]
   },
   {
@@ -129,6 +166,10 @@ export const projects: Project[] = [
     "source": "https://github.com/dosaki/swords-and-quills",
     "type": "game",
     "status": "done",
-    "tags": []
+    "tags": [],
+    "languages": [
+      "javascript",
+      "terraform"
+    ]
   }
 ]

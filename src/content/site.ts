@@ -54,12 +54,5 @@ export const site = {
       ],
       [{ text: "You'll find I talk mostly about tech, video, board games... and containers. I talk a lot about containers." }],
     ] satisfies { text: string; href?: string; emphasis?: boolean }[][],
-    languagesIntro: {
-      prefix: 'I find myself making things with ',
-      byProjects: 'various programming languages',
-      middle: ". Some of which, I've worked with for ",
-      byYears: 'a few years',
-      suffix: '.',
-    },
   },
 }

@@ -1,4 +1,5 @@
 import type { IconName } from '../icons/paths.generated'
+import type { LanguageName } from '../icons/languages.generated'
 
 export type ProjectType = 'bot' | 'game' | 'mod' | 'tool'
 export type ProjectStatus = 'active' | 'done' | 'inactive'
@@ -14,6 +15,9 @@ export interface Project {
   type: ProjectType
   status: ProjectStatus
   tags: string[]
+  /** Derived from GitHub by scripts/derive-languages.mjs. Empty is meaningful:
+      it says the repo has no programming language, not that we didn't look. */
+  languages: LanguageName[]
   pixelatedImage?: boolean
 }
 
@@ -34,10 +38,3 @@ export interface SocialLink {
   icon: IconName
 }
 
-export interface LanguageStat {
-  projects: string[]
-  startYear: number | null
-  endYear: number | null
-}
-
-export type LanguageMap = Record<string, LanguageStat>

@@ -1,4 +1,5 @@
 import type { Project } from '../content/types'
+import { LanguageIcons } from './LanguageIcons'
 import styles from './ProjectCard.module.css'
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -22,9 +23,12 @@ export function ProjectCard({ project }: { project: Project }) {
           className={styles.description}
           dangerouslySetInnerHTML={{ __html: project.description }}
         />
-        <p className={styles.tags}>
-          {[project.type, ...project.tags].map((tag) => `#${tag}`).join(' ')}
-        </p>
+        <div className={styles.footer}>
+          <LanguageIcons languages={project.languages} />
+          <p className={styles.tags}>
+            {[project.type, ...project.tags].map((tag) => `#${tag}`).join(' ')}
+          </p>
+        </div>
       </div>
       {project.source ? (
         <a
