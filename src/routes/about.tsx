@@ -20,7 +20,6 @@ function About() {
 
   return (
     <section>
-      <p className={styles.sectionLabel}>About</p>
       <div className={styles.aboutHead}>
         <h1>{heading}</h1>
 

@@ -40,7 +40,13 @@ function RootLayout() {
                 </li>
               ))}
               <li>
-                <a href="mailto:tiago.f.a.correia@gmail.com">Talk to me</a>
+                <a
+                  href="mailto:tiago.f.a.correia@gmail.com"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Talk to me
+                </a>
               </li>
             </ul>
           </nav>

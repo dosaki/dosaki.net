@@ -1,14 +1,3 @@
-/* Section label: uppercase, tracked, gold — the board's section-header device. */
-.sectionLabel {
-  font-family: var(--font-heading);
-  font-size: var(--size-small);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: var(--track-label);
-  color: var(--color-accent);
-  margin: 0 0 var(--space-2);
-}
-
 /* Shared divider device: a hairline terminating in a rotated square. Hoisted
    here so page.tsx's `.rule` and ProjectCard's `.bandRule` (composes: from
    this file) don't each redefine the same ::before/::after pair — only the

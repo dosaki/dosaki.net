@@ -12,7 +12,6 @@ export const Route = createFileRoute('/talks')({
 function Talks() {
   return (
     <section>
-      <p className={styles.sectionLabel}>Speaking</p>
       <h1>{site.titles.talks}</h1>
       <hr className={styles.rule} aria-hidden="true" />
       <ul className={styles.list} aria-label="Talks" role="list">
