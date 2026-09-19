@@ -25,7 +25,7 @@ export const site = {
     social: [
       { label: 'Email', href: 'mailto:tiago.f.a.correia@gmail.com', icon: 'envelope' },
       { label: 'LinkedIn', href: 'https://www.linkedin.com/in/dosaki/', icon: 'linkedin' },
-      { label: 'Twitter', href: 'https://twitter.com/dosaki', icon: 'twitter' },
+      { label: 'Bluesky', href: 'https://bsky.app/profile/dosaki.bsky.social', icon: 'bluesky' },
     ] satisfies SocialLink[],
     paragraphs: [
       [{ text: "I'm a software developer from Portugal. Currently living in the UK." }],

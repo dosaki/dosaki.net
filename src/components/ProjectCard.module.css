@@ -94,5 +94,13 @@
   border-left: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
   border-radius: 0 4px 0 4px;
+  /* Recede until wanted: the tab is a secondary action sitting on the image,
+     so it rests at 70% and comes fully forward on hover or keyboard focus. */
+  opacity: 0.7;
+  transition: opacity 120ms ease-out;
 }
-.source:hover { text-decoration: underline; }
+.source:hover,
+.source:focus-visible {
+  opacity: 1;
+  text-decoration: underline;
+}

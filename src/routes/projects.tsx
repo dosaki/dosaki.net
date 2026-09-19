@@ -13,7 +13,6 @@ function Projects() {
   const ordered = orderProjects(projects)
   return (
     <section>
-      <p className={styles.sectionLabel}>Portfolio</p>
       <h1>{site.titles.projects}</h1>
       <hr className={styles.rule} aria-hidden="true" />
       <ul className={styles.grid} aria-label="Projects" role="list">

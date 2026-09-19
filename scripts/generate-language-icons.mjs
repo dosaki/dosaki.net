@@ -16,8 +16,9 @@ const SLUGS = {
   python: 'python',
   go: 'go',
   shell: 'gnubash',
+  typescript: 'typescript',
 }
-const LABELS = { shell: 'Shell', go: 'Go', javascript: 'JavaScript', python: 'Python', terraform: 'Terraform' }
+const LABELS = { shell: 'Shell', go: 'Go', javascript: 'JavaScript', python: 'Python', terraform: 'Terraform', typescript: 'TypeScript' }
 
 // Simple Icons draws every mark into a 24x24 box, but does not scale the glyph
 // to fill it: Go's logo is a short, wide wordmark that occupies about a third
@@ -29,8 +30,11 @@ const LABELS = { shell: 'Shell', go: 'Go', javascript: 'JavaScript', python: 'Py
 // weight whatever their aspect ratio.
 //
 // Curves are bounded by their control points (a bezier never leaves its control
-// hull) and arcs by their endpoints grown by the radii. Both over-estimate
-// slightly, which can only ever render a mark a shade small — never clip it.
+// hull) and arcs by their endpoints grown by how far the arc bulges from its
+// chord. Both over-estimate slightly, which can only ever render a mark a shade
+// small — never clip it. Growing arcs by the full radius instead is not "a
+// shade": TypeScript's mark rounds a corner with a 27.72-unit radius, and that
+// turned its 24-unit box into a 55-unit one, shrinking the glyph by half.
 function pathBBox(d) {
   let i = 0
   const ws = () => {
@@ -121,15 +125,27 @@ function pathBBox(d) {
         add(cx, cy)
         break
       case 'A': {
-        const rx = num(), ry = num()
+        const rx = Math.abs(num()), ry = Math.abs(num())
         num() // x-axis-rotation
-        flag() // large-arc
+        const largeArc = flag()
         flag() // sweep
+        const x0 = cx, y0 = cy
         cx = ox + num()
         cy = oy + num()
-        // The arc stays within one radius of its endpoint in each axis.
-        add(cx - rx, cy - ry)
-        add(cx + rx, cy + ry)
+        // How far the arc can stray from its chord. A short arc on a big circle
+        // is nearly straight, so its bulge is the sagitta r - sqrt(r² - h²); the
+        // long way round it is the rest of the circle, r + sqrt(r² - h²). Radii
+        // too small to span the chord are scaled up per the SVG spec; scaling by
+        // the smaller radius bounds that scale-up, and using the larger radius
+        // as a circle bounds the ellipse. Rotation is irrelevant to a bound.
+        const h = Math.hypot(cx - x0, cy - y0) / 2
+        const r = Math.max(rx, ry) * Math.max(1, h / Math.min(rx, ry))
+        const leg = Math.sqrt(Math.max(0, r * r - h * h))
+        const bulge = largeArc ? r + leg : r - leg
+        add(x0 - bulge, y0 - bulge)
+        add(x0 + bulge, y0 + bulge)
+        add(cx - bulge, cy - bulge)
+        add(cx + bulge, cy + bulge)
         break
       }
       case 'Z':

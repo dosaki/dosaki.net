@@ -1,16 +1,14 @@
-import type { Project, ProjectStatus, Talk } from './types'
+import type { Project, Talk } from './types'
 
-const STATUS_BAND: Record<ProjectStatus, number> = {
-  active: 0,
-  done: 1,
-  inactive: 2,
-}
-
+// Archived projects sit below a divider on the page; nothing else is grouped.
+// Within each side, the most recently committed project comes first.
 export function orderProjects(projects: Project[]): Project[] {
   return [...projects].sort((a, b) => {
-    const band = STATUS_BAND[a.status] - STATUS_BAND[b.status]
-    if (band !== 0) return band
-    return a.type.localeCompare(b.type)
+    const archived = Number(a.status === 'inactive') - Number(b.status === 'inactive')
+    if (archived !== 0) return archived
+    // ISO dates compare correctly as strings, so no Date parsing is needed.
+    if (a.lastCommit !== b.lastCommit) return a.lastCommit < b.lastCommit ? 1 : -1
+    return a.name.localeCompare(b.name)
   })
 }
 

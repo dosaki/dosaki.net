@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "languages": "node scripts/derive-languages.mjs && node scripts/generate-language-icons.mjs"
+    "github": "node scripts/derive-from-github.mjs && node scripts/generate-language-icons.mjs"
   },
   "dependencies": {
     "@tanstack/react-router": "1.170.32",
