@@ -12,7 +12,8 @@ export const projects: Project[] = [
     "tags": [
       "game"
     ],
-    "languages": []
+    "languages": [],
+    "lastCommit": "2017-09-24"
   },
   {
     "name": "The Analyser",
@@ -26,7 +27,8 @@ export const projects: Project[] = [
     "languages": [
       "javascript",
       "terraform"
-    ]
+    ],
+    "lastCommit": "2024-08-11"
   },
   {
     "name": "Seating Space Planner",
@@ -40,7 +42,8 @@ export const projects: Project[] = [
     "languages": [
       "javascript",
       "terraform"
-    ]
+    ],
+    "lastCommit": "2024-08-30"
   },
   {
     "name": "Retro Speech Maker",
@@ -59,7 +62,8 @@ export const projects: Project[] = [
       "javascript",
       "terraform",
       "shell"
-    ]
+    ],
+    "lastCommit": "2024-08-30"
   },
   {
     "name": "Portrait Generator",
@@ -76,7 +80,8 @@ export const projects: Project[] = [
       "javascript",
       "terraform",
       "shell"
-    ]
+    ],
+    "lastCommit": "2024-08-30"
   },
   {
     "name": "Hell Inc.",
@@ -90,7 +95,8 @@ export const projects: Project[] = [
     "languages": [
       "javascript",
       "terraform"
-    ]
+    ],
+    "lastCommit": "2024-08-11"
   },
   {
     "name": "PIcons",
@@ -107,7 +113,8 @@ export const projects: Project[] = [
     "languages": [
       "python",
       "shell"
-    ]
+    ],
+    "lastCommit": "2024-07-12"
   },
   {
     "name": "Henchman",
@@ -122,7 +129,8 @@ export const projects: Project[] = [
     ],
     "languages": [
       "javascript"
-    ]
+    ],
+    "lastCommit": "2020-04-16"
   },
   {
     "name": "Glizi",
@@ -138,7 +146,8 @@ export const projects: Project[] = [
     ],
     "languages": [
       "javascript"
-    ]
+    ],
+    "lastCommit": "2022-02-22"
   },
   {
     "name": "Sqlow",
@@ -156,7 +165,8 @@ export const projects: Project[] = [
     "languages": [
       "go",
       "shell"
-    ]
+    ],
+    "lastCommit": "2023-06-30"
   },
   {
     "name": "Swords & Quills",
@@ -170,6 +180,88 @@ export const projects: Project[] = [
     "languages": [
       "javascript",
       "terraform"
-    ]
+    ],
+    "lastCommit": "2024-08-11"
+  },
+  {
+    "name": "Not Warehouse 13",
+    "description": "A 13Kb puzzle game made for the <a href='https://2024.js13kgames.com/'>2024 js13k</a> with the theme \"Triskaidekaphobia\". Swipe to merge the boxes in your warehouse, but boxes labelled 13 can't be moved. Only a -13 box can nullify one, and your job is to clear the warehouse of every last 13.",
+    "icon": "https://rawcdn.githack.com/dosaki/not13/e60b0d5db07e7da48856b315bba60e089236bcc7/large-icon.png",
+    "link": "https://not13.dosaki.net/",
+    "source": "https://github.com/dosaki/not13",
+    "type": "game",
+    "status": "done",
+    "tags": [],
+    "languages": [
+      "javascript",
+      "terraform",
+      "shell"
+    ],
+    "lastCommit": "2024-09-13"
+  },
+  {
+    "name": "Black Cat's Herbs & Brews",
+    "description": "A 13Kb potion shop game made for the <a href='https://2025.js13kgames.com/'>2025 js13k</a> with the theme \"Black Cat\". You and your familiar have just moved to a small village. Brew and sell potions to the villagers to pay rent, upgrade the shop and, above all, keep your cat fed, or she'll knock everything off the shelves.",
+    "icon": "https://rawcdn.githack.com/dosaki/black-cats-herbs-and-brews/097345248545d6fb112cd4f0974cf01471208adc/large-icon.png",
+    "link": "https://black-cats-herbs-and-brews.dosaki.net/",
+    "source": "https://github.com/dosaki/black-cats-herbs-and-brews",
+    "type": "game",
+    "status": "done",
+    "tags": [],
+    "languages": [
+      "javascript",
+      "terraform"
+    ],
+    "lastCommit": "2025-09-09"
+  },
+  {
+    "name": "Rainbow Trotters",
+    "description": "A 13Kb multiplayer game made for the <a href='https://2026.js13kgames.com/'>2026 js13k</a> with the theme \"Unicorns and Rainbows\". A top-down lightcycle race where you're a unicorn: don't hit the trails the others leave behind (or your own), and pick up powers to ghost through, break walls or gallop faster. Play against bots or other players.",
+    "icon": "https://rawcdn.githack.com/dosaki/rainbow-trotters/8dc9574005687d0e06fb9260b282dd91ca74ac0e/banner.png",
+    "link": "https://js13kgames.com/games/rainbow-trotters",
+    "source": "https://github.com/dosaki/rainbow-trotters",
+    "type": "game",
+    "status": "done",
+    "tags": [],
+    "languages": [
+      "javascript"
+    ],
+    "lastCommit": "2026-08-30"
+  },
+  {
+    "name": "Housing Herald",
+    "description": "Azeroth's real estate and interior design magazine: spotlights, interviews and home inspiration for <a href='https://worldofwarcraft.blizzard.com/'>World of Warcraft</a> player housing, with 360° virtual tours of the best homes.",
+    "icon": "/images/housing-herald.png",
+    "link": "https://housing-herald.com/",
+    "source": null,
+    "repo": "dosaki/housing-herald",
+    "type": "site",
+    "status": "active",
+    "tags": [
+      "wow",
+      "magazine"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "lastCommit": "2026-09-19"
+  },
+  {
+    "name": "Dosaki's WoW Addons",
+    "description": "Home for my free <a href='https://worldofwarcraft.blizzard.com/'>World of Warcraft</a> addons: download them, read the docs and report issues without needing an account. Each addon's page is built from its own README and release bundle.",
+    "icon": "https://addons.dosaki.net/static/logo.svg",
+    "link": "https://addons.dosaki.net/",
+    "source": null,
+    "repo": "dosaki/addons.dosaki.net",
+    "type": "site",
+    "status": "active",
+    "tags": [
+      "wow",
+      "addons"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "lastCommit": "2026-08-15"
   }
 ]
