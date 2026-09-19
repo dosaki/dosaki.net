@@ -4,6 +4,14 @@ on:
     branches:
       - master
 
+# Merging several PRs back to back queues several deploys. Without this they
+# run in parallel and race each other on the Terraform state and the S3 sync.
+# Queue them instead; a running deploy is left to finish, and only the newest
+# pending one is kept since it already contains the older commits.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
 jobs:
   non-conditional-step-to-make-this-valid:
     runs-on: ubuntu-latest
