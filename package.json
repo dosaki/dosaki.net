@@ -15,12 +15,12 @@
     "github": "node scripts/derive-from-github.mjs && node scripts/generate-language-icons.mjs"
   },
   "dependencies": {
-    "@tanstack/react-router": "1.170.36",
+    "@tanstack/react-router": "1.170.38",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@tanstack/router-plugin": "1.168.38",
+    "@tanstack/router-plugin": "1.168.40",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
     "@types/react": "19.3.0",
