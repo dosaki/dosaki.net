@@ -244,7 +244,7 @@ export const projects: Project[] = [
     "languages": [
       "typescript"
     ],
-    "lastCommit": "2026-09-19"
+    "lastCommit": "2026-09-30"
   },
   {
     "name": "Dosaki's WoW Addons",
@@ -263,5 +263,23 @@ export const projects: Project[] = [
       "typescript"
     ],
     "lastCommit": "2026-08-15"
+  },
+  {
+    "name": "Maya",
+    "description": "Manage All Your Agents: a desktop app that puts every coding-agent session on your computer (Claude Code, Codex, Antigravity and Grok Build) on one board, tells you when one needs you, and lets you answer from the card. Say her name and she does it by voice.",
+    "icon": "/images/maya.png",
+    "link": "https://github.com/dosaki/maya/releases/latest",
+    "source": "https://github.com/dosaki/maya",
+    "type": "tool",
+    "status": "active",
+    "tags": [
+      "agents",
+      "voice"
+    ],
+    "languages": [
+      "rust",
+      "typescript"
+    ],
+    "lastCommit": "2026-10-01"
   }
 ]

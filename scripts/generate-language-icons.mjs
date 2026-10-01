@@ -17,8 +17,9 @@ const SLUGS = {
   go: 'go',
   shell: 'gnubash',
   typescript: 'typescript',
+  rust: 'rust',
 }
-const LABELS = { shell: 'Shell', go: 'Go', javascript: 'JavaScript', python: 'Python', terraform: 'Terraform', typescript: 'TypeScript' }
+const LABELS = { shell: 'Shell', go: 'Go', javascript: 'JavaScript', python: 'Python', terraform: 'Terraform', typescript: 'TypeScript', rust: 'Rust' }
 
 // Simple Icons draws every mark into a 24x24 box, but does not scale the glyph
 // to fill it: Go's logo is a short, wide wordmark that occupies about a third
