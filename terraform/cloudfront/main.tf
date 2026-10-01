@@ -22,9 +22,11 @@ resource "aws_cloudfront_distribution" "distribution" {
   is_ipv6_enabled     = true
   aliases             = [var.domain_name]
 
-  # If there is a 404, return index.html with a HTTP 200 Response
+  # If there is a 404, return index.html with a HTTP 200 Response.
+  # Client-side routes such as /projects are served through this, so it is
+  # index.html and must not be cached either (see cache_control in ../s3).
   custom_error_response {
-    error_caching_min_ttl = 3000
+    error_caching_min_ttl = 0
     error_code            = 404
     response_code         = 200
     response_page_path    = "/${var.custom_error_response_page_path}"

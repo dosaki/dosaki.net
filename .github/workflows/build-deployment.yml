@@ -43,6 +43,10 @@ jobs:
 
       - name: Terraform setup
         uses: hashicorp/setup-terraform@v4
+        with:
+          # The wrapper adds its own lines to stdout, which breaks
+          # $(terraform output -raw ...) in the invalidation step.
+          terraform_wrapper: false
 
       - name: Install dependencies
         run: npm ci
@@ -82,3 +86,14 @@ jobs:
             -var domain_name=${{ vars.AWS_FULL_DOMAIN }} \
             -var hosted_zone_id=${{ secrets.AWS_HOSTED_ZONE }} \
             -var cert_arn=${{secrets.DOSAKI_NET_CERT_ARN}}
+
+      # Edge locations keep their own copy of index.html and of the index.html
+      # served for client-side routes. Clear them so every location picks up
+      # the new build at once, rather than pointing at bundles apply deleted.
+      - name: Invalidate CloudFront cache
+        run: |
+          cd ./terraform
+          DISTRIBUTION_ID=$(terraform output -raw distribution_id)
+          aws cloudfront create-invalidation \
+            --distribution-id "$DISTRIBUTION_ID" \
+            --paths "/*"
