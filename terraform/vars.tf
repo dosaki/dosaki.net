@@ -23,3 +23,8 @@ variable "hosted_zone_id" {
 variable "cert_arn" {
   default = "ARN for the certificate ARN - See AWS Certificate Manager"
 }
+
+variable "apex_domain_name" {
+  description = "The bare domain that redirects to domain_name"
+  default = "dosaki.net"
+}
