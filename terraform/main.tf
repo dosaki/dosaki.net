@@ -35,3 +35,12 @@ module "route53" {
   distribution_domain_name    = module.cloudfront.distribution_domain_name
   distribution_hosted_zone_id = module.cloudfront.distribution_zone_id
 }
+
+module "apex_redirect" {
+  source = "./apex-redirect"
+
+  apex_domain_name   = var.apex_domain_name
+  target_domain_name = var.domain_name
+  hosted_zone_id     = var.hosted_zone_id
+  cert_arn           = var.cert_arn
+}
