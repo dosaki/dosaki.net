@@ -19,7 +19,9 @@ jobs:
       - run: echo "Github actions need a step without any conditions"
 
   build_and_deploy:
-    timeout-minutes: 10
+    # Leaves room for the CloudFront invalidation waiter, which gives up
+    # after 10 minutes on its own.
+    timeout-minutes: 20
     if: "!contains(github.event.head_commit.message, 'NO_DEPLOY')"
     environment:
       name: production
@@ -90,10 +92,16 @@ jobs:
       # Edge locations keep their own copy of index.html and of the index.html
       # served for client-side routes. Clear them so every location picks up
       # the new build at once, rather than pointing at bundles apply deleted.
+      # Wait for it, so a green run means every location serves the new build.
       - name: Invalidate CloudFront cache
         run: |
           cd ./terraform
           DISTRIBUTION_ID=$(terraform output -raw distribution_id)
-          aws cloudfront create-invalidation \
+          INVALIDATION_ID=$(aws cloudfront create-invalidation \
             --distribution-id "$DISTRIBUTION_ID" \
-            --paths "/*"
+            --paths "/*" \
+            --query 'Invalidation.Id' --output text)
+          echo "Waiting for invalidation $INVALIDATION_ID"
+          aws cloudfront wait invalidation-completed \
+            --distribution-id "$DISTRIBUTION_ID" \
+            --id "$INVALIDATION_ID"
