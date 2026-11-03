@@ -11,7 +11,7 @@
 }
 .back:hover { text-decoration: underline; }
 
-.intro { composes: measure from '../../styles/page.module.css'; color: var(--color-text-muted); margin: 0; }
+.intro { color: var(--color-text-muted); margin: 0; }
 
 .explorer {
   display: grid;
