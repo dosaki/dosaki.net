@@ -73,4 +73,24 @@ describe('quaternion cube route', () => {
     fireEvent.click(screen.getByRole('button', { name: '+90° X' }))
     await screen.findByText(/x = 0\.7\d\d/)
   })
+
+  it('logs each visit when you leave the house and come back', async () => {
+    renderAt('/projects/quaternion-cube')
+    fireEvent.click(await screen.findByRole('tab', { name: '8 · WoW housing' }))
+    const button = screen.getByRole('button', { name: 'Leave and come back' })
+    fireEvent.click(button)
+    fireEvent.click(button)
+    expect(screen.getAllByText(/visit 2: off by [\d.]+°, same as last visit/).length).toBeGreaterThan(0)
+  })
+
+  it('shows one of drift, gimbal lock and housing at a time', async () => {
+    renderAt('/projects/quaternion-cube')
+    const gimbal = await screen.findByRole('tab', { name: '7 · Gimbal lock' })
+    expect(screen.getByRole('heading', { name: /Drift/ })).toBeVisible()
+    expect(screen.queryByRole('heading', { name: /Gimbal lock/ })).toBeNull()
+    fireEvent.click(gimbal)
+    expect(gimbal).toHaveAttribute('aria-selected', 'true')
+    expect(screen.getByRole('heading', { name: /Gimbal lock/ })).toBeVisible()
+    expect(screen.queryByRole('heading', { name: /Drift/ })).toBeNull()
+  })
 })
