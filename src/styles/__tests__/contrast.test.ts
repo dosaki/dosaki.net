@@ -68,6 +68,13 @@ describe('brand tokens meet WCAG AA', () => {
     // corner tab on a project card and the talk-card icon.
     ['accent on card surface', 'color-accent', 'color-surface'],
     ['badge text on badge', 'color-badge-text', 'color-badge-bg'],
+    // Quaternion Cube labels, buttons and status chips.
+    ...['x', 'y', 'z', 'w'].flatMap((axis) => [
+      [`${axis} axis on page`, `color-axis-${axis}`, 'color-bg'],
+      [`${axis} axis on card`, `color-axis-${axis}`, 'color-surface'],
+    ]),
+    // The selected/primary button: navy text on gold.
+    ['page colour on accent', 'color-bg', 'color-accent'],
   ])('%s reaches 4.5:1', (_label, fg, bg) => {
     expect(contrast(t[fg], t[bg])).toBeGreaterThanOrEqual(4.5)
   })

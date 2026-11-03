@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router'
 import type { Project } from '../content/types'
 import { LanguageIcons } from './LanguageIcons'
 import styles from './ProjectCard.module.css'
@@ -14,7 +15,13 @@ export function ProjectCard({ project }: { project: Project }) {
       />
       <div className={styles.body}>
         <h2 className={styles.name}>
-          {project.link ? <a href={project.link}>{project.name}</a> : project.name}
+          {!project.link ? (
+            project.name
+          ) : project.link.startsWith('/') ? (
+            <Link to={project.link}>{project.name}</Link>
+          ) : (
+            <a href={project.link}>{project.name}</a>
+          )}
         </h2>
         {project.status === 'inactive' ? (
           <p className={styles.badge}>{project.status}</p>

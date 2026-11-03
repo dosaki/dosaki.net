@@ -47,7 +47,11 @@ async function github(route) {
 
 for (const p of projects) {
   const repo = p.repo ?? p.source?.split('/').slice(-2).join('/')
-  if (!repo) throw new Error(`${p.name} has neither source nor repo to derive from`)
+  // Pages built into this site have no repo of their own.
+  if (!repo) {
+    console.warn(`  -- ${p.name}: no source or repo; keeping hand-maintained values`)
+    continue
+  }
 
   // A repo we can't read (private, no token) keeps its committed values rather
   // than failing the whole run, so an unauthenticated run still refreshes the rest.

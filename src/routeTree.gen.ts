@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as TalksRouteImport } from './routes/talks'
+import { Route as ProjectsQuaternionCubeRouteImport } from './routes/projects_.quaternion-cube'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const TalksRoute = TalksRouteImport.update({
   path: '/talks',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsQuaternionCubeRoute = ProjectsQuaternionCubeRouteImport.update({
+  id: '/projects_/quaternion-cube',
+  path: '/projects/quaternion-cube',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/projects': typeof ProjectsRoute
   '/talks': typeof TalksRoute
+  '/projects/quaternion-cube': typeof ProjectsQuaternionCubeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/projects': typeof ProjectsRoute
   '/talks': typeof TalksRoute
+  '/projects/quaternion-cube': typeof ProjectsQuaternionCubeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,21 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/projects': typeof ProjectsRoute
   '/talks': typeof TalksRoute
+  '/projects_/quaternion-cube': typeof ProjectsQuaternionCubeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/projects' | '/talks'
+  fullPaths:
+    '/' | '/about' | '/projects' | '/talks' | '/projects/quaternion-cube'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/projects' | '/talks'
-  id: '__root__' | '/' | '/about' | '/projects' | '/talks'
+  to: '/' | '/about' | '/projects' | '/talks' | '/projects/quaternion-cube'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/projects'
+    | '/talks'
+    | '/projects_/quaternion-cube'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +83,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ProjectsRoute: typeof ProjectsRoute
   TalksRoute: typeof TalksRoute
+  ProjectsQuaternionCubeRoute: typeof ProjectsQuaternionCubeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +116,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TalksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects_/quaternion-cube': {
+      id: '/projects_/quaternion-cube'
+      path: '/projects/quaternion-cube'
+      fullPath: '/projects/quaternion-cube'
+      preLoaderRoute: typeof ProjectsQuaternionCubeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +131,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ProjectsRoute: ProjectsRoute,
   TalksRoute: TalksRoute,
+  ProjectsQuaternionCubeRoute: ProjectsQuaternionCubeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

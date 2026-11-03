@@ -281,5 +281,22 @@ export const projects: Project[] = [
       "typescript"
     ],
     "lastCommit": "2026-10-01"
+  },
+  {
+    "name": "Quaternion Cube",
+    "description": "An interactive page I made to understand quaternions: rotate a cube and watch the four numbers, the axis and angle, the rotation matrix and the order of composition change together. Also shows why matrices drift and Euler angles lock where quaternions don't.",
+    "icon": "/images/quaternion-cube.png",
+    "link": "/projects/quaternion-cube",
+    "source": null,
+    "type": "experiment",
+    "status": "done",
+    "tags": [
+      "maths",
+      "3d"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "lastCommit": "2026-11-03"
   }
 ]

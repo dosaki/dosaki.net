@@ -1,7 +1,7 @@
 import type { IconName } from '../icons/paths.generated'
 import type { LanguageName } from '../icons/languages.generated'
 
-export type ProjectType = 'bot' | 'game' | 'mod' | 'site' | 'tool'
+export type ProjectType = 'bot' | 'experiment' | 'game' | 'mod' | 'site' | 'tool'
 export type ProjectStatus = 'active' | 'done' | 'inactive'
 export type TalkType = 'talk' | 'blog' | 'workshop' | 'podcast'
 
@@ -10,11 +10,13 @@ export interface Project {
   /** Legacy: contains raw HTML. Flagged for the design overhaul. */
   description: string
   icon: string
+  /** A path starting with `/` is a page on this site. */
   link: string | null
   /** Shown as the source badge. Null hides it, whether or not a repo exists. */
   source: string | null
   /** GitHub `owner/name` to derive from when `source` is hidden. Private repos
-      need GITHUB_TOKEN set when running scripts/derive-from-github.mjs. */
+      need GITHUB_TOKEN set when running scripts/derive-from-github.mjs.
+      With neither, the derived fields are kept by hand. */
   repo?: string
   type: ProjectType
   status: ProjectStatus

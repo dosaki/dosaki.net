@@ -15,6 +15,12 @@
   --color-badge-bg: #92400E;    /* Warm Wood       status fill */
   --color-badge-text: #F8F5E9;  /* Parchment       on badge     6.49:1 */
 
+  /* Diagram axes: X/Y/Z in the usual red/green/blue, violet for a quaternion's w */
+  --color-axis-x: #F87171;
+  --color-axis-y: #4ADE80;
+  --color-axis-z: #60A5FA;
+  --color-axis-w: #C084FC;
+
   /* Type */
   --font-heading: 'Poppins', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
