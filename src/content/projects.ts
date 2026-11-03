@@ -13,7 +13,8 @@ export const projects: Project[] = [
       "game"
     ],
     "languages": [],
-    "lastCommit": "2017-09-24"
+    "lastCommit": "2017-09-24",
+    "ai": null
   },
   {
     "name": "The Analyser",
@@ -28,7 +29,8 @@ export const projects: Project[] = [
       "javascript",
       "terraform"
     ],
-    "lastCommit": "2024-08-11"
+    "lastCommit": "2024-08-11",
+    "ai": null
   },
   {
     "name": "Seating Space Planner",
@@ -43,7 +45,8 @@ export const projects: Project[] = [
       "javascript",
       "terraform"
     ],
-    "lastCommit": "2024-08-30"
+    "lastCommit": "2024-08-30",
+    "ai": null
   },
   {
     "name": "Retro Speech Maker",
@@ -63,7 +66,8 @@ export const projects: Project[] = [
       "terraform",
       "shell"
     ],
-    "lastCommit": "2024-08-30"
+    "lastCommit": "2024-08-30",
+    "ai": null
   },
   {
     "name": "Portrait Generator",
@@ -81,7 +85,8 @@ export const projects: Project[] = [
       "terraform",
       "shell"
     ],
-    "lastCommit": "2024-08-30"
+    "lastCommit": "2024-08-30",
+    "ai": null
   },
   {
     "name": "Hell Inc.",
@@ -96,7 +101,8 @@ export const projects: Project[] = [
       "javascript",
       "terraform"
     ],
-    "lastCommit": "2024-08-11"
+    "lastCommit": "2024-08-11",
+    "ai": null
   },
   {
     "name": "PIcons",
@@ -114,7 +120,8 @@ export const projects: Project[] = [
       "python",
       "shell"
     ],
-    "lastCommit": "2024-07-12"
+    "lastCommit": "2024-07-12",
+    "ai": null
   },
   {
     "name": "Henchman",
@@ -130,7 +137,8 @@ export const projects: Project[] = [
     "languages": [
       "javascript"
     ],
-    "lastCommit": "2020-04-16"
+    "lastCommit": "2020-04-16",
+    "ai": null
   },
   {
     "name": "Glizi",
@@ -147,7 +155,8 @@ export const projects: Project[] = [
     "languages": [
       "javascript"
     ],
-    "lastCommit": "2022-02-22"
+    "lastCommit": "2022-02-22",
+    "ai": null
   },
   {
     "name": "Sqlow",
@@ -166,7 +175,8 @@ export const projects: Project[] = [
       "go",
       "shell"
     ],
-    "lastCommit": "2023-06-30"
+    "lastCommit": "2023-06-30",
+    "ai": null
   },
   {
     "name": "Swords & Quills",
@@ -181,7 +191,8 @@ export const projects: Project[] = [
       "javascript",
       "terraform"
     ],
-    "lastCommit": "2024-08-11"
+    "lastCommit": "2024-08-11",
+    "ai": null
   },
   {
     "name": "Not Warehouse 13",
@@ -197,7 +208,8 @@ export const projects: Project[] = [
       "terraform",
       "shell"
     ],
-    "lastCommit": "2024-09-13"
+    "lastCommit": "2024-09-13",
+    "ai": null
   },
   {
     "name": "Black Cat's Herbs & Brews",
@@ -212,7 +224,8 @@ export const projects: Project[] = [
       "javascript",
       "terraform"
     ],
-    "lastCommit": "2025-09-09"
+    "lastCommit": "2025-09-09",
+    "ai": null
   },
   {
     "name": "Rainbow Trotters",
@@ -226,7 +239,8 @@ export const projects: Project[] = [
     "languages": [
       "javascript"
     ],
-    "lastCommit": "2026-08-30"
+    "lastCommit": "2026-08-30",
+    "ai": "Build script improvements, tests, wavedash port, code completion"
   },
   {
     "name": "Housing Herald",
@@ -244,7 +258,8 @@ export const projects: Project[] = [
     "languages": [
       "typescript"
     ],
-    "lastCommit": "2026-09-30"
+    "lastCommit": "2026-09-30",
+    "ai": "Code reviews, bug fixes, code completion, tests"
   },
   {
     "name": "Dosaki's WoW Addons",
@@ -262,7 +277,8 @@ export const projects: Project[] = [
     "languages": [
       "typescript"
     ],
-    "lastCommit": "2026-08-15"
+    "lastCommit": "2026-08-15",
+    "ai": null
   },
   {
     "name": "Maya",
@@ -280,7 +296,8 @@ export const projects: Project[] = [
       "rust",
       "typescript"
     ],
-    "lastCommit": "2026-10-01"
+    "lastCommit": "2026-10-01",
+    "ai": "All development"
   },
   {
     "name": "Quaternion Cube",
@@ -297,6 +314,7 @@ export const projects: Project[] = [
     "languages": [
       "typescript"
     ],
-    "lastCommit": "2026-11-03"
+    "lastCommit": "2026-11-03",
+    "ai": "Refactor old code, tests and embed into website"
   }
 ]

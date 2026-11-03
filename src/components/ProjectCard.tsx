@@ -30,6 +30,7 @@ export function ProjectCard({ project }: { project: Project }) {
           className={styles.description}
           dangerouslySetInnerHTML={{ __html: project.description }}
         />
+        <p className={styles.ai}>{project.ai ? `AI use: ${project.ai}` : 'No AI used'}</p>
         <div className={styles.footer}>
           <LanguageIcons languages={project.languages} />
           <p className={styles.tags}>

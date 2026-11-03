@@ -42,4 +42,12 @@ describe('projects route', () => {
       await screen.findByRole('link', { name: 'Sqlow source' }),
     ).toHaveAttribute('href', 'https://github.com/dosaki/sqlow')
   })
+
+  it('states how AI was used on each project, or that it was not', async () => {
+    renderAt('/projects')
+    const card = async (name: string) =>
+      (await screen.findByRole('heading', { level: 2, name })).closest('li')!
+    expect(await card('Maya')).toHaveTextContent('AI use: All development')
+    expect(await card('Sqlow')).toHaveTextContent('No AI used')
+  })
 })

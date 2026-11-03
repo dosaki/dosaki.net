@@ -5,7 +5,7 @@ import type { Project, Talk } from '../types'
 const project = (over: Partial<Project>): Project => ({
   name: 'x', description: '', icon: '', link: null, source: null,
   type: 'tool', status: 'active', tags: [], languages: [],
-  lastCommit: '2020-01-01', ...over,
+  lastCommit: '2020-01-01', ai: null, ...over,
 })
 
 const talk = (over: Partial<Talk>): Talk => ({
