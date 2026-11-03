@@ -36,11 +36,24 @@ describe('quaternion cube route', () => {
     expect(nav.querySelector('a.active')).toHaveTextContent('Stuff I make')
   })
 
+  it('starts slightly turned rather than at the identity', async () => {
+    renderAt('/projects/quaternion-cube')
+    const line = '0.991 + 0.075i + 0.070j − 0.085k'
+    expect(
+      await screen.findByText((_, el) => el?.tagName === 'DIV' && el.textContent?.trim() === line),
+    ).toBeInTheDocument()
+    // The sliders keep the starting values exactly as written.
+    expect(screen.getByLabelText('w')).toHaveValue('0.99')
+    expect(screen.getByLabelText('z')).toHaveValue('-0.085')
+  })
+
   it('updates the quaternion when a component slider moves', async () => {
     renderAt('/projects/quaternion-cube')
-    const w = await screen.findByLabelText('w')
-    // w = 0 with x = y = z = 0 is not a rotation; the page says so.
-    fireEvent.change(w, { target: { value: '0' } })
+    await screen.findByLabelText('w')
+    // All four components at 0 is not a rotation; the page says so.
+    for (const c of ['w', 'x', 'y', 'z']) {
+      fireEvent.change(screen.getByLabelText(c), { target: { value: '0' } })
+    }
     expect(screen.getByText(/is not a rotation/)).toBeInTheDocument()
   })
 
@@ -48,5 +61,16 @@ describe('quaternion cube route', () => {
     renderAt('/projects/quaternion-cube')
     fireEvent.click(await screen.findByRole('button', { name: '+90° X' }))
     expect(screen.getByText(/q ← r·q\s+r = \+90° about X/)).toBeInTheDocument()
+  })
+
+  it('explains i, j and k with the live x, y and z values', async () => {
+    renderAt('/projects/quaternion-cube')
+    const summary = await screen.findByText(/What are/)
+    const details = summary.closest('details')!
+    expect(details).toHaveTextContent('k = i·j')
+    expect(details).toHaveTextContent('x = 0.075')
+    expect(details).toHaveTextContent('w = 0.991 means a turn of θ = 15.3°')
+    fireEvent.click(screen.getByRole('button', { name: '+90° X' }))
+    await screen.findByText(/x = 0\.7\d\d/)
   })
 })

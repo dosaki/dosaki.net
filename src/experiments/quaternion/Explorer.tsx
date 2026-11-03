@@ -14,7 +14,11 @@ interface View {
   angle: number
 }
 
-const INITIAL: View = { raw: [...IDENTITY], q: [...IDENTITY], axis: [0, 1, 0], angle: 0 }
+// Start (and reset) slightly turned, so the cube reads as 3D straight away.
+// Loaded as raw slider values: it isn't quite unit length, so the page
+// normalises it like any other input.
+const START: Quat = [0.99, 0.075, 0.07, -0.085]
+const INITIAL: View = applyQ({ raw: [...IDENTITY], q: [...IDENTITY], axis: [0, 1, 0], angle: 0 }, START, 'comp')
 
 function applyQ(prev: View, next: Quat, source?: 'comp' | 'axis'): View {
   const q = Q.normalize(next)
@@ -177,6 +181,66 @@ export function Explorer() {
               ? '|q| = 1.000 — a unit quaternion.'
               : `Raw |q| = ${rawNorm.toFixed(3)}. Divided by ${rawNorm.toFixed(3)} to get the unit quaternion shown above.`}
           </p>
+          <details>
+            <summary>
+              What are <span className={s.mono}>i</span>, <span className={s.mono}>j</span> and{' '}
+              <span className={s.mono}>k</span>?
+            </summary>
+            <ul className={s.ijk}>
+              <li>
+                <span className={`${s.mono} ${s.lx}`}>i</span> is √−1, the imaginary unit you know from complex numbers
+                <ul>
+                  <li>
+                    <span className={s.mono}>x = {x.toFixed(3)}</span> says how much of{' '}
+                    <span className={s.mono}>i</span> this quaternion has
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span className={`${s.mono} ${s.ly}`}>j</span> is also √−1, but a different one (
+                <span className={s.mono}>j ≠ i</span>)
+                <ul>
+                  <li>
+                    <span className={s.mono}>y = {y.toFixed(3)}</span> says how much of <span className={s.mono}>j</span>{' '}
+                    it has
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span className={`${s.mono} ${s.lz}`}>k</span> is also √−1, and is defined as{' '}
+                <span className={s.mono}>k = i·j</span>
+                <ul>
+                  <li>
+                    The order matters: <span className={s.mono}>j·i = −k</span>
+                  </li>
+                  <li>
+                    <span className={s.mono}>z = {z.toFixed(3)}</span> says how much of <span className={s.mono}>k</span>{' '}
+                    it has
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <p className={s.muted}>
+              <b>
+                How can <span className={s.mono}>i</span> and <span className={s.mono}>j</span> be different if they are both <span className={s.mono}>√−1</span>?
+              </b>
+            </p>
+            <p className={s.muted}>
+              They are all imaginary numbers, like <span className={s.mono}>i</span> was when it was invented: none of
+              them can be written with real numbers. <span className={s.mono}>i</span>, <span className={s.mono}>j</span> and{' '}
+              <span className={s.mono}>k</span> are all <span className={s.mono}>√−1</span>, but they're all different. It helps to think of them as independent
+              directions, like the axes of a graph.
+            </p>
+            <p className={s.muted}>
+              <b>What's the first element of the quaternion and why isn't it an imaginary number?</b>
+            </p>
+            <p className={s.muted}>
+              It's the real part, <span className={s.mono}>w</span>. It says how far the cube turns around the axis (the dashed line{' '}
+              <span className={s.mono}>n</span>): <span className={s.mono}>w = cos(θ/2)</span>, so right now <span className={s.mono}>w = {w.toFixed(3)}</span> means a turn of{' '}
+              <span className={s.mono}>θ = {(theta / DEG).toFixed(1)}°</span>. Unlike <span className={s.mono}>i</span>, <span className={s.mono}>j</span> and <span className={s.mono}>k</span>, it is a real number
+              because it is an amount rather than a direction in space.
+            </p>
+          </details>
         </section>
 
         <section className={s.card}>
