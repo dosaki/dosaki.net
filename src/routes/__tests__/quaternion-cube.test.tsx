@@ -76,21 +76,27 @@ describe('quaternion cube route', () => {
 
   it('logs each visit when you leave the house and come back', async () => {
     renderAt('/projects/quaternion-cube')
-    fireEvent.click(await screen.findByRole('tab', { name: '8 · WoW housing' }))
+    fireEvent.click(await screen.findByRole('tab', { name: 'WoW Housing Rotation Bug' }))
     const button = screen.getByRole('button', { name: 'Leave and come back' })
     fireEvent.click(button)
     fireEvent.click(button)
     expect(screen.getAllByText(/visit 2: off by [\d.]+°, same as last visit/).length).toBeGreaterThan(0)
   })
 
-  it('shows one of drift, gimbal lock and housing at a time', async () => {
+  it('shows one section at a time, starting with the explanation', async () => {
     renderAt('/projects/quaternion-cube')
-    const gimbal = await screen.findByRole('tab', { name: '7 · Gimbal lock' })
-    expect(screen.getByRole('heading', { name: /Drift/ })).toBeVisible()
+    const tabs = await screen.findAllByRole('tab')
+    expect(tabs.map((t) => t.textContent)).toEqual([
+      'Explanation',
+      'Drift Example',
+      'Gimbal Lock Alternative',
+      'WoW Housing Rotation Bug',
+    ])
+    expect(screen.getByRole('heading', { name: 'Current quaternion' })).toBeVisible()
     expect(screen.queryByRole('heading', { name: /Gimbal lock/ })).toBeNull()
-    fireEvent.click(gimbal)
-    expect(gimbal).toHaveAttribute('aria-selected', 'true')
+    fireEvent.click(tabs[2])
+    expect(tabs[2]).toHaveAttribute('aria-selected', 'true')
     expect(screen.getByRole('heading', { name: /Gimbal lock/ })).toBeVisible()
-    expect(screen.queryByRole('heading', { name: /Drift/ })).toBeNull()
+    expect(screen.queryByRole('heading', { name: 'Current quaternion' })).toBeNull()
   })
 })

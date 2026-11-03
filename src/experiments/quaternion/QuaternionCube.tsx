@@ -9,9 +9,10 @@ import { Housing } from './Housing'
 import s from './QuaternionCube.module.css'
 
 const TABS = [
-  { id: 'drift', label: '6 · Drift', panel: <Drift /> },
-  { id: 'gimbal', label: '7 · Gimbal lock', panel: <Gimbal /> },
-  { id: 'housing', label: '8 · WoW housing', panel: <Housing /> },
+  { id: 'explanation', label: 'Explanation', panel: <Explorer /> },
+  { id: 'drift', label: 'Drift Example', panel: <Drift /> },
+  { id: 'gimbal', label: 'Gimbal Lock Alternative', panel: <Gimbal /> },
+  { id: 'housing', label: 'WoW Housing Rotation Bug', panel: <Housing /> },
 ]
 
 export function QuaternionCube() {
@@ -38,9 +39,8 @@ export function QuaternionCube() {
       </p>
       <hr className={page.rule} aria-hidden="true" />
 
-      <Explorer />
       <div>
-        <div className={s.tabs} role="tablist" aria-label="More experiments">
+        <div className={s.tabs} role="tablist" aria-label="Sections">
           {TABS.map((t) => (
             <button
               key={t.id}

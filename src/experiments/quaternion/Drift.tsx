@@ -82,21 +82,16 @@ export function Drift() {
   const qRef = useDrawnCanvas((cv, pal) => drawCube(cv, pal, (p) => Q.rotate(q, p), { labelSize: 13 }))
 
   const fixes = [
-    ['normQ', 'Fix the quaternion each step: q ← q / |q| (4 numbers, 1 square root)'],
-    ['orthoM', 'Fix the matrix each step: Gram–Schmidt (make the 3 columns unit length and at right angles)'],
+    ['normQ', 'Fix the quaternion each step (q ← q / |q|)'],
+    ['orthoM', 'Fix the matrix each step (Gram–Schmidt)'],
   ] as const
 
   return (
     <section className={s.card}>
-      <h2>6 · Drift: a matrix vs a quaternion</h2>
+      <h2>Drift: matrix vs quaternion</h2>
       <p className={s.muted}>
-        Both cubes repeat the same tiny turn (1° about the axis (1, 2, 3)) thousands of times, as a game or a motion
-        sensor does every frame. After every step each number is rounded, the way a computer has to store it.
-      </p>
-      <p className={s.muted}>
-        <b>This is exaggerated on purpose.</b> Real computers keep about 7 significant digits (float32) or about 16
-        (float64), so the same drift takes far longer to show. Here you choose how many decimal places survive each
-        step.
+        Both cubes repeat the same 1° turn thousands of times, rounding every number after each step. Real computers
+        round far less, so this is exaggerated.
       </p>
       <div className={s.twin}>
         <div className={s.pane}>
@@ -177,10 +172,8 @@ angle X↔Y      90.00°   (always: q v q* cannot skew)` +
         </label>
       ))}
       <p className={s.muted}>
-        What to notice: the matrix stops being a rotation. Its columns change length and stop being at 90°, so the
-        cube skews. Turn off the quaternion fix and the quaternion drifts too, but <span className={s.mono}>q v q*</span>{' '}
-        scales every direction by the same amount, <span className={s.mono}>|q|²</span>, so the cube only grows. It
-        can never skew. Both errors can be fixed; the quaternion fix is smaller and simpler.
+        The matrix skews. The quaternion can&apos;t: without the fix it only grows or shrinks, and the fix is one
+        division.
       </p>
     </section>
   )

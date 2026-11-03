@@ -62,15 +62,10 @@ export function Gimbal() {
 
   return (
     <section className={s.card}>
-      <h2>7 · Gimbal lock: Euler angles vs a quaternion</h2>
+      <h2>Gimbal lock: Euler angles vs quaternion</h2>
       <p className={s.muted}>
-        Euler angles describe an orientation as three turns in a fixed order. Here it is yaw about Y, then pitch about
-        the new X, then roll about the newest Z:{' '}
-        <span className={s.mono}>
-          R = R<sub>y</sub>(yaw) · R<sub>x</sub>(pitch) · R<sub>z</sub>(roll)
-        </span>
-        . The three lines show the axis each angle turns about. Set pitch to ±90° and the roll axis lands on top of the
-        yaw axis. Two angles now do the same job, and one direction of turning has no angle of its own.
+        Euler angles are three turns in a row: yaw, then pitch, then roll. At pitch ±90° the roll axis lands on the yaw
+        axis. Two angles now do the same thing, and one direction of turning is gone.
       </p>
       <div className={s.split}>
         <div className={s.pane}>
@@ -99,10 +94,7 @@ export function Gimbal() {
             </div>
           ))}
           <p className={s.muted}>
-            Angle between the yaw axis and the roll axis: {between.toFixed(1)}°.{' '}
-            {locked
-              ? 'They are (nearly) the same line, so yaw and roll now turn the cube the same way.'
-              : 'At 0° they would be the same line.'}
+            Yaw and roll axes are {between.toFixed(1)}° apart.{locked ? ' Locked: they are the same line.' : ''}
           </p>
           <div className={s.btns}>
             <button type="button" className={s.button} onClick={() => setFromSliders({ ...angles, pitch: 90 })}>
@@ -113,9 +105,8 @@ export function Gimbal() {
             </button>
           </div>
           <p className={s.muted}>
-            Now turn the cube by a small, ordinary amount about a fixed world axis. The quaternion just multiplies by a
-            2° turn. The Euler angles are then read back from the result. Near the lock, a 2° turn can make yaw and roll
-            jump by tens of degrees, and exactly at the lock they cannot be read back uniquely at all.
+            Turn the cube 2°. The quaternion changes a little. Near the lock, the Euler angles jump by tens of
+            degrees.
           </p>
           <div className={s.btns}>
             {(['x', 'y', 'z'] as const).map((key) => (

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { drawCube } from './draw'
 import { Q, fromEuler, type Angles, type Quat } from './math'
 import { angleBetween, loadEuler, loadQuat, saveEuler, saveQuat } from './storage'
@@ -65,32 +65,34 @@ export function Housing() {
   }
 
   const panes = [
-    { title: 'Saved as Euler angles', pane: euler },
-    { title: 'Saved as a quaternion', pane: quat },
+    {
+      title: 'Saved as Euler angles',
+      about: (
+        <>Converted to three Euler angles, saved, converted back.</>
+      ),
+      pane: euler,
+    },
+    {
+      title: 'Saved as a quaternion',
+      about: (
+        <>Drop the biggest of the four numbers (it can be recalculated), save the other three.</>
+      ),
+      pane: quat,
+    },
   ]
 
   return (
     <section className={s.card}>
-      <h2>8 · Leave the house and come back</h2>
+      <h2>Leave the house and come back</h2>
       <p className={s.muted}>
-        In World of Warcraft housing, decor sometimes comes back rotated slightly differently after you leave the house
-        and return. How the game stores rotations isn&apos;t public, so this is a guess at the mechanism, not a copy of
-        it: the object is placed as a quaternion, but saved with only a few bits per number, then loaded back. Each pane
-        draws the loaded object over a dashed outline of where you placed it.
-      </p>
-      <p className={s.muted}>
-        <b>Left:</b> the quaternion is converted to three Euler angles to save it, and back to a quaternion when you
-        return. <b>Right:</b> the quaternion is saved directly, using the same number of bits: the largest of its four
-        numbers is dropped, because it can be worked out from the other three (<span className={s.mono}>|q| = 1</span>
-        ), and the other three are saved.
+        WoW housing decor sometimes comes back slightly rotated. Blizzard hasn&apos;t said how rotations are stored,
+        so this is a guess: they&apos;re saved with too few bits. Dashed outline: where you put it. Solid cube: what
+        came back.
       </p>
       <div className={s.twin}>
-        {panes.map(({ title, pane }) => {
-          const off = angleBetween(placed, pane.q)
-          return (
-            <HousingPane key={title} title={title} placed={placed} pane={pane} off={off} visits={visits} />
-          )
-        })}
+        {panes.map(({ title, about, pane }) => (
+          <HousingPane key={title} title={title} about={about} placed={placed} pane={pane} visits={visits} />
+        ))}
       </div>
       <div className={s.btns}>
         <button type="button" className={`${s.button} ${s.primary}`} onClick={comeBack}>
@@ -144,21 +146,27 @@ export function Housing() {
         <output htmlFor="h-bits">{bits}</output>
       </div>
       <p className={s.muted}>
-        With {bits} bits, an Euler angle can only land on steps of {(360 / 2 ** bits).toPrecision(3)}°.
+        {bits} bits: each Euler angle snaps to {(360 / 2 ** bits).toPrecision(3)}° steps.
       </p>
       <p className={s.muted}>
-        What to notice: converting to Euler angles moves the object on the first visit, by up to half a step on each
-        angle, and after that it stays put, because saving the loaded angles gives the same angles again. Saving the
-        quaternion itself is usually closer (about 40% less error on average) since its steps are spread more evenly
-        over all orientations. It has its own quirk: when two of its numbers are almost equal, it can flip between two
-        nearby saves on every visit. Real games use more bits than this. At 16 bits the error is under 0.01°, so a
-        visible jump means the angles are saved more coarsely, such as rounded to whole degrees.
+        Euler angles: the object moves on the first visit, then stays put. Quaternion: about 40% closer, but it can
+        flip between two positions on later visits. At 16 bits both are off by under 0.01°, so a visible jump means
+        far fewer bits.
       </p>
     </section>
   )
 }
 
-function HousingPane({ title, placed, pane, off, visits }: { title: string; placed: Quat; pane: Pane; off: number; visits: number }) {
+interface PaneProps {
+  title: string
+  about: ReactNode
+  placed: Quat
+  pane: Pane
+  visits: number
+}
+
+function HousingPane({ title, about, placed, pane, visits }: PaneProps) {
+  const off = angleBetween(placed, pane.q)
   const ref = useDrawnCanvas((cv, pal) =>
     drawCube(cv, pal, (p) => Q.rotate(pane.q, p), { labelSize: 13, ghost: (p) => Q.rotate(placed, p) }),
   )
@@ -169,6 +177,7 @@ function HousingPane({ title, placed, pane, off, visits }: { title: string; plac
         <span>{title}</span>
         <span className={`${s.chip} ${exact ? s.ok : s.bad}`}>{exact ? 'where you left it' : `off by ${off.toFixed(2)}°`}</span>
       </div>
+      <p className={`${s.muted} ${s.paneAbout}`}>{about}</p>
       <canvas ref={ref} className={s.canvas} aria-label={`${title}: the object as loaded, over an outline of where it was placed`} />
       <pre className={s.pre}>
         {`saved   ${pane.saved}\n` + (visits ? pane.log.join('\n') : '(press "Leave and come back")')}
