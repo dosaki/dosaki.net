@@ -59,6 +59,13 @@
 
 .description { color: var(--color-text); }
 
+.ai {
+  color: var(--color-text-muted);
+  font-size: var(--size-small);
+  font-style: italic;
+  margin: var(--space-2) 0 0;
+}
+
 /* Pinned to the bottom so the footers line up across a row of unequal-length
    cards. Language marks and tags share the row; the tags are pushed right so
    the marks stay in a consistent column down the grid. */

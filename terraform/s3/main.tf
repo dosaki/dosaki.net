@@ -42,7 +42,8 @@ resource "aws_s3_bucket_website_configuration" "static_site_config" {
 
 
 locals {
-  # index.html names the hashed bundles of the current build, and those of the
+  # Every index.html (the root one and one per in-site project page, written
+  # for link previews) names the hashed bundles of the current build, and those of the
   # previous build are deleted on apply. It must never be served stale, or
   # browsers request chunks that no longer exist. Hashed files under assets/
   # never change content under the same name, so they can be cached forever.
@@ -61,7 +62,7 @@ resource "aws_s3_object" "static_site_content" {
   acl          = "public-read"
   etag         = each.value.digests.md5
   cache_control = (
-    each.key == "index.html" ? local.cache_control_index :
+    endswith(each.key, "index.html") ? local.cache_control_index :
     startswith(each.key, "assets/") ? local.cache_control_hashed :
     local.cache_control_other
   )

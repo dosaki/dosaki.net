@@ -1,25 +1,49 @@
+import { projects } from './projects'
 import { site } from './site'
 
-/**
- * Build-time substitution for `index.html`.
- *
- * The document title and description have to live in the static HTML: social
- * scrapers and link-preview bots do not run JavaScript, so anything the router
- * sets on the client is invisible to them. But writing them as literals means
- * a second home for the site's positioning, which is exactly how the title
- * came to say "Architect, Engineer, Strategist" long after the header stopped.
- *
- * So `index.html` carries placeholders and Vite fills them from `site.meta` at
- * build time — one source, still fully static output.
- */
-export const PLACEHOLDERS: Record<string, string> = {
-  '%SITE_TITLE%': site.meta.title,
-  '%SITE_DESCRIPTION%': site.meta.description,
+// index.html carries placeholders that are filled at build time, because
+// social scrapers and link-preview bots do not run JavaScript.
+
+export interface PageMeta {
+  title: string
+  description: string
+  image: string
 }
 
-export function substituteHtmlMeta(html: string): string {
+export const PLACEHOLDERS: Record<string, keyof PageMeta> = {
+  '%SITE_TITLE%': 'title',
+  '%SITE_DESCRIPTION%': 'description',
+  '%SITE_IMAGE%': 'image',
+}
+
+const absolute = (url: string) => new URL(url, site.url).href
+const escape = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
+export const siteMeta: PageMeta = {
+  title: site.meta.title,
+  description: site.meta.description,
+  image: absolute(site.meta.image),
+}
+
+// Projects that are pages on this site get their own HTML file, so a shared
+// link previews with the project's name, blurb and image.
+export const pageMeta: Record<string, PageMeta> = Object.fromEntries(
+  projects
+    .filter((p) => p.link?.startsWith('/'))
+    .map((p) => [
+      p.link,
+      {
+        title: `${p.name} · ${site.brand.name}`,
+        description: p.description.replace(/<[^>]+>/g, ''),
+        image: absolute(p.icon),
+      },
+    ]),
+)
+
+export function substituteHtmlMeta(html: string, meta: PageMeta = siteMeta): string {
   return Object.entries(PLACEHOLDERS).reduce(
-    (acc, [token, value]) => acc.replaceAll(token, value),
+    (acc, [token, key]) => acc.replaceAll(token, escape(meta[key])),
     html,
   )
 }

@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { useEffect } from 'react'
 import { site } from '../../content/site'
 import page from '../../styles/page.module.css'
 import { Drift } from './Drift'
@@ -7,6 +8,15 @@ import { Gimbal } from './Gimbal'
 import s from './QuaternionCube.module.css'
 
 export function QuaternionCube() {
+  // Landing here directly serves this page's own HTML and title, so put the
+  // site title back when navigating away.
+  useEffect(() => {
+    document.title = `Quaternion Cube · ${site.brand.name}`
+    return () => {
+      document.title = site.meta.title
+    }
+  }, [])
+
   return (
     <article className={s.page}>
       <Link to="/projects" className={s.back}>

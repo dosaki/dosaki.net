@@ -1,16 +1,29 @@
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
-import { substituteHtmlMeta } from './src/content/htmlMeta'
+import { mkdirSync, writeFileSync } from 'node:fs'
+import type { Plugin } from 'vite'
+import { pageMeta, substituteHtmlMeta } from './src/content/htmlMeta'
 
-/**
- * Fills index.html's %SITE_*% placeholders from site.meta, so the document
- * title and description have one source. They must stay in the static HTML —
- * social scrapers do not run JavaScript — but they need not be written twice.
- */
-const siteMeta = {
+// Fills index.html's %SITE_*% placeholders, and writes a copy per in-site
+// project page (e.g. build/projects/quaternion-cube/index.html) with that
+// page's title, description and preview image.
+let template = ''
+const siteMeta: Plugin = {
   name: 'site-meta',
-  transformIndexHtml: { order: 'pre' as const, handler: substituteHtmlMeta },
+  transformIndexHtml: {
+    order: 'post',
+    handler(html) {
+      template = html
+      return substituteHtmlMeta(html)
+    },
+  },
+  writeBundle({ dir }) {
+    for (const [path, meta] of Object.entries(pageMeta)) {
+      mkdirSync(`${dir}${path}`, { recursive: true })
+      writeFileSync(`${dir}${path}/index.html`, substituteHtmlMeta(template, meta))
+    }
+  },
 }
 
 export default defineConfig({

@@ -28,6 +28,8 @@ export interface Project {
       Derived from GitHub by scripts/derive-from-github.mjs; drives page order. */
   lastCommit: string
   pixelatedImage?: boolean
+  /** What AI was used for on the project; null means none. */
+  ai: string | null
 }
 
 export interface Talk {

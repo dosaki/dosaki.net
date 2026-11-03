@@ -6,7 +6,7 @@
 
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
-import { PLACEHOLDERS, substituteHtmlMeta } from '../htmlMeta'
+import { PLACEHOLDERS, pageMeta, siteMeta, substituteHtmlMeta } from '../htmlMeta'
 import { site } from '../site'
 
 const indexHtml = () =>
@@ -19,16 +19,14 @@ describe('index.html metadata substitution', () => {
   })
 
   it('leaves no placeholder unsubstituted in the real index.html', () => {
-    const out = substituteHtmlMeta(indexHtml())
-    // Catches both directions: a placeholder added to the HTML without a
-    // matching entry here, and an entry renamed out from under the HTML.
-    expect(out).not.toMatch(/%[A-Z_]+%/)
+    expect(substituteHtmlMeta(indexHtml())).not.toMatch(/%[A-Z_]+%/)
   })
 
-  it('actually puts the site title and description into index.html', () => {
+  it('puts the site title, description and preview image into index.html', () => {
     const out = substituteHtmlMeta(indexHtml())
     expect(out).toContain(`<title>${site.meta.title}</title>`)
     expect(out).toContain(site.meta.description)
+    expect(out).toContain(`<meta property="og:image" content="${site.url}/images/og-image.png" />`)
   })
 
   it('index.html still carries a placeholder for each key, so none is dead', () => {
@@ -36,5 +34,27 @@ describe('index.html metadata substitution', () => {
     for (const token of Object.keys(PLACEHOLDERS)) {
       expect(html, `${token} is declared but unused in index.html`).toContain(token)
     }
+  })
+
+  it('escapes values so they cannot break out of an attribute', () => {
+    const out = substituteHtmlMeta('content="%SITE_DESCRIPTION%"', {
+      ...siteMeta,
+      description: 'say "hi" & <b>bye</b>',
+    })
+    expect(out).toBe('content="say &quot;hi&quot; &amp; &lt;b&gt;bye&lt;/b&gt;"')
+  })
+})
+
+describe('in-site project pages', () => {
+  it('get their own title and use the project image for previews', () => {
+    expect(pageMeta['/projects/quaternion-cube']).toEqual({
+      title: `Quaternion Cube · ${site.brand.name}`,
+      description: expect.stringContaining('understand quaternions'),
+      image: `${site.url}/images/quaternion-cube.png`,
+    })
+  })
+
+  it('only covers projects that live on this site', () => {
+    for (const path of Object.keys(pageMeta)) expect(path).toMatch(/^\//)
   })
 })

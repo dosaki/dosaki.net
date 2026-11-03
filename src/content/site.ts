@@ -6,7 +6,9 @@ export const site = {
     strapline: 'Head of Technology',
     positioning: '',
   },
+  url: 'https://about.dosaki.net',
   meta: {
+    image: '/images/og-image.png',
     title: 'Tiago Correia · Head of Technology',
     description:
       'Tiago Correia · Head of Technology. Things I make, things I talk about.',
