@@ -1,8 +1,7 @@
-// Minimal ambient shim for the one Node built-in this codebase imports
-// (src/styles/__tests__/contrast.test.ts). The project has no @types/node
-// dependency — adding one is out of scope for this task — so TypeScript
-// cannot otherwise resolve `node:fs`. This declares only the signature
-// actually used: readFileSync(path, encoding) => string.
+// Minimal ambient shim for node:fs, since the project has no @types/node.
+// Declares only what the tests and vite.config.ts use.
 declare module 'node:fs' {
   export function readFileSync(path: string | URL, encoding: string): string
+  export function writeFileSync(path: string, data: string): void
+  export function mkdirSync(path: string, options: { recursive: boolean }): void
 }

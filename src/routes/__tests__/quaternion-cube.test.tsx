@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, within } from '@testing-library/react'
 import { renderAt } from '../../test/renderAt'
 
 describe('quaternion cube route', () => {
@@ -9,6 +9,24 @@ describe('quaternion cube route', () => {
     expect(
       await screen.findByRole('heading', { level: 1, name: 'Quaternion Cube' }),
     ).toBeInTheDocument()
+  })
+
+  // S3 serves the page's own index.html (for link previews) by redirecting to
+  // the trailing-slash URL, so the router must accept it.
+  it('renders at the trailing-slash URL too', async () => {
+    renderAt('/projects/quaternion-cube/')
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'Quaternion Cube' }),
+    ).toBeInTheDocument()
+  })
+
+  it('restores the site title after navigating away', async () => {
+    renderAt('/projects/quaternion-cube')
+    await screen.findByRole('heading', { level: 1, name: 'Quaternion Cube' })
+    expect(document.title).toBe('Quaternion Cube · Tiago Correia')
+    fireEvent.click(within(screen.getByRole('main')).getByRole('link', { name: /Stuff I make/ }))
+    await screen.findByRole('heading', { level: 1, name: 'Stuff I make' })
+    expect(document.title).toBe('Tiago Correia · Head of Technology')
   })
 
   it('keeps "Stuff I make" active in the nav', async () => {
