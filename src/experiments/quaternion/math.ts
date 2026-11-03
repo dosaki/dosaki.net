@@ -37,6 +37,7 @@ export const Q = {
   conj: (q: Quat): Quat => [q[0], -q[1], -q[2], -q[3]],
   neg: (q: Quat) => Q.map(q, (c) => -c),
   norm: (q: Quat) => Math.hypot(...q),
+  dot: qdot,
   normalize(q: Quat): Quat {
     const n = Q.norm(q)
     return n < 1e-9 ? [...IDENTITY] : Q.map(q, (c) => c / n)

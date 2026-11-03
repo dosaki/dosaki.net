@@ -59,7 +59,17 @@ interface Options {
   trail?: Vec3[] | null
   marker?: boolean
   lines?: Line[]
+  // Dashed outline of the cube under another transform, to compare against.
+  ghost?: (p: Vec3) => Vec3
 }
+
+// The 12 edges of the cube, as pairs of corners that differ in one coordinate.
+const CORNERS: Vec3[] = [-1, 1].flatMap((x) => [-1, 1].flatMap((y) => [-1, 1].map((z): Vec3 => [x, y, z])))
+const EDGES = CORNERS.flatMap((a, i) =>
+  CORNERS.slice(i + 1)
+    .filter((b) => a.filter((c, k) => c !== b[k]).length === 1)
+    .map((b) => [a, b]),
+)
 
 // Draws the cube transformed by xf. Any linear map works, so a skewed matrix shows as skewed.
 export function drawCube(cv: HTMLCanvasElement, pal: Palette, xf: (p: Vec3) => Vec3, o: Options = {}) {
@@ -137,6 +147,7 @@ export function drawCube(cv: HTMLCanvasElement, pal: Palette, xf: (p: Vec3) => V
     text(cx, cy, fc.label, pal.ink, size, 700)
   }
 
+  if (o.ghost) for (const [a, b] of EDGES) stroke([o.ghost(a), o.ghost(b)], pal.w, 2, [6, 4])
   if (o.trail && o.trail.length > 1) stroke(o.trail, pal.w, 2.5)
   if (o.marker) {
     const [x, y] = screen(xf([1, 1, 1]))

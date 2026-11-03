@@ -1,13 +1,23 @@
 import { Link } from '@tanstack/react-router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { site } from '../../content/site'
 import page from '../../styles/page.module.css'
 import { Drift } from './Drift'
 import { Explorer } from './Explorer'
 import { Gimbal } from './Gimbal'
+import { Housing } from './Housing'
 import s from './QuaternionCube.module.css'
 
+const TABS = [
+  { id: 'explanation', label: 'Explanation', panel: <Explorer /> },
+  { id: 'drift', label: 'Drift Example', panel: <Drift /> },
+  { id: 'gimbal', label: 'Gimbal Lock Alternative', panel: <Gimbal /> },
+  { id: 'housing', label: 'WoW Housing Rotation Bug', panel: <Housing /> },
+]
+
 export function QuaternionCube() {
+  const [tab, setTab] = useState(TABS[0].id)
+
   // Landing here directly serves this page's own HTML and title, so put the
   // site title back when navigating away.
   useEffect(() => {
@@ -29,9 +39,30 @@ export function QuaternionCube() {
       </p>
       <hr className={page.rule} aria-hidden="true" />
 
-      <Explorer />
-      <Drift />
-      <Gimbal />
+      <div>
+        <div className={s.tabs} role="tablist" aria-label="Sections">
+          {TABS.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              role="tab"
+              id={`tab-${t.id}`}
+              aria-controls={`panel-${t.id}`}
+              aria-selected={tab === t.id}
+              className={s.tab}
+              onClick={() => setTab(t.id)}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+        {/* Hidden rather than unmounted, so each tab keeps its state. */}
+        {TABS.map((t) => (
+          <div key={t.id} role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} hidden={tab !== t.id}>
+            {t.panel}
+          </div>
+        ))}
+      </div>
 
       <p className={s.muted}>
         Right-handed axes: <span className={s.lx}>X</span> right, <span className={s.ly}>Y</span> up,{' '}
